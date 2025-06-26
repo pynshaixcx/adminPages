@@ -1,298 +1,242 @@
-<html><head>
+<!DOCTYPE html>
+<html>
+<head>
     <meta charset="utf-8"/>
     <link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect"/>
-    <link as="style" href="https://fonts.googleapis.com/css2?display=swap&amp;family=Noto+Sans%3Awght%40400%3B500%3B700%3B900&amp;family=Plus+Jakarta+Sans%3Awght%40400%3B500%3B700%3B800" onload="this.rel='stylesheet'" rel="stylesheet"/>
-    <title>Stitch Design</title>
+    <link as="style" href="https://fonts.googleapis.com/css2?display=swap&family=Inter%3Awght%40400%3B500%3B600%3B700%3B900&family=Noto+Sans%3Awght%40400%3B500%3B700%3B900" onload="this.rel='stylesheet'" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet"/>
+    <title>ShaiBha Admin - Products</title>
     <link href="data:image/x-icon;base64," rel="icon" type="image/x-icon"/>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <style type="text/tailwindcss">
-          :root {
-            --primary-color: #000000;
-            --foreground-rgb: 255, 255, 255;
-            --background-start-rgb: 26, 26, 26;
-            --background-end-rgb: 26, 26, 26;
-            --card-rgb: 36, 36, 36;
-            --card-border-rgb: 54, 54, 54;
-            --muted-foreground-rgb: 173, 173, 173;
-            --border-rgb: 77, 77, 77;
-          }
-          .dark {
-            --foreground-rgb: 255, 255, 255;
-            --background-start-rgb: 26, 26, 26;
-            --background-end-rgb: 26, 26, 26;
-            --card-rgb: 36, 36, 36;
-            --card-border-rgb: 54, 54, 54;
-            --muted-foreground-rgb: 173, 173, 173;
-            --border-rgb: 77, 77, 77;
-          }
-          body {
-            color: rgb(var(--foreground-rgb));
-            background: linear-gradient(to bottom, transparent, rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
-          }
-          .table-header {
-             background-color: rgb(var(--card-rgb));
-             border-bottom: 1px solid rgb(var(--border-rgb));
-          }
-          .table-cell {
-            border-bottom: 1px solid rgb(var(--border-rgb));
-            padding: 1rem 1.5rem;}
-          .frosted-glass-table {
-            background-color: rgba(var(--card-rgb), 0.8);backdrop-filter: blur(10px);
-            border: 1px solid rgb(var(--card-border-rgb));
-            border-radius: 0.75rem;overflow: hidden;}
-          .status-badge {
+        :root {
+            --background-primary: rgba(20, 20, 20, 0.7);
+            --background-secondary: rgba(48, 48, 48, 0.7);
+            --border-color: rgba(48, 48, 48, 0.9);
+            --text-primary: #ffffff;
+            --text-secondary: #ababab;
+            --blur-intensity: 10px;
+            --sidebar-glow: 0 0 20px 5px rgba(128, 128, 255, 0.2);
+        }
+        .frosted-glass {
+            backdrop-filter: blur(var(--blur-intensity));
+            -webkit-backdrop-filter: blur(var(--blur-intensity));
+        }
+        .sidebar-item:hover, .sidebar-item.active {
+            background-color: var(--background-secondary) !important;
+            border-radius: 0.5rem;
+        }
+        .icon-button:hover {
+            background-color: rgba(75, 75, 75, 0.7) !important;
+        }
+        .sidebar-glow-effect {
+            box-shadow: var(--sidebar-glow);
+        }
+        /* Product-specific styles */
+        .status-badge {
             padding: 0.25rem 0.75rem;
-            border-radius: 9999px;font-size: 0.75rem;font-weight: 500;
-          }
-          .status-in-stock {
-            background-color: rgba(74, 222, 128, 0.1);color: #4ade80;}
-          .status-low-stock {
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+        .status-in-stock {
+            background-color: rgba(74, 222, 128, 0.1);
+            color: #4ade80;
+        }
+        .status-low-stock {
             background-color: rgba(250, 204, 21, 0.1);
             color: #fac00a;
-          }
-          .status-out-of-stock {
+        }
+        .status-out-of-stock {
             background-color: rgba(248, 113, 113, 0.1);
             color: #f87171;
-          }
-          .header-link-active {
-            color: rgb(var(--foreground-rgb));
-            border-bottom: 2px solid rgb(var(--foreground-rgb));
-            padding-bottom: 4px;
-          }
-          .header-link {
-            color: rgb(var(--muted-foreground-rgb));
-            transition: color 0.2s ease-in-out;
-          }
-          .header-link:hover {
-            color: rgb(var(--foreground-rgb));
-          }
-          .filter-button {
-            background-color: rgb(var(--card-rgb));
-            border: 1px solid rgb(var(--card-border-rgb));
-            color: rgb(var(--muted-foreground-rgb));
-            transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
-          }
-          .filter-button:hover {
-            background-color: rgba(var(--card-rgb), 0.7);
-            color: rgb(var(--foreground-rgb));
-          }
-          .search-input {
-            background-color: rgb(var(--card-rgb));
-            border: 1px solid rgb(var(--card-border-rgb));
-            color: rgb(var(--foreground-rgb));
-          }
-          .search-input::placeholder {
-            color: rgb(var(--muted-foreground-rgb));
-          }
-          @media (max-width: 768px) {.frosted-glass-table thead {
-              display: none;
-            }
-            .frosted-glass-table tbody,
-            .frosted-glass-table tr,
-            .frosted-glass-table td {
-              display: block;
-              width: 100%;
-            }
-            .frosted-glass-table tr {
-              margin-bottom: 1rem;
-              border-radius: 0.75rem;
-              overflow: hidden;
-              background-color: rgba(var(--card-rgb), 0.8);
-              border: 1px solid rgb(var(--card-border-rgb));
-            }
-            .frosted-glass-table td {
-              text-align: right;
-              padding-left: 50%;
-              position: relative;
-              border-bottom: 1px solid rgb(var(--border-rgb));
-            }
-            .frosted-glass-table td:last-child {
-              border-bottom: none;
-            }
-            .frosted-glass-table td::before {
-              content: attr(data-label);
-              position: absolute;
-              left: 1.5rem;
-              font-weight: 500;
-              color: rgb(var(--foreground-rgb));
-              text-align: left;
-            }
-          }
-        </style>
-    </head>
-    <body>
-    <div class="relative flex size-full min-h-screen flex-col dark group/design-root overflow-x-hidden" style='font-family: "Plus Jakarta Sans", "Noto Sans", sans-serif;'>
-    <div class="layout-container flex h-full grow flex-col">
-    <header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[rgb(var(--border-rgb))] px-6 md:px-10 py-4">
-    <div class="flex items-center gap-8">
-    <div class="flex items-center gap-3 text-[rgb(var(--foreground-rgb))]">
-    <div class="size-6">
-    <svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-    <g clip-path="url(#clip0_6_543)">
-    <path d="M42.1739 20.1739L27.8261 5.82609C29.1366 7.13663 28.3989 10.1876 26.2002 13.7654C24.8538 15.9564 22.9595 18.3449 20.6522 20.6522C18.3449 22.9595 15.9564 24.8538 13.7654 26.2002C10.1876 28.3989 7.13663 29.1366 5.82609 27.8261L20.1739 42.1739C21.4845 43.4845 24.5355 42.7467 28.1133 40.548C30.3042 39.2016 32.6927 37.3073 35 35C37.3073 32.6927 39.2016 30.3042 40.548 28.1133C42.7467 24.5355 43.4845 21.4845 42.1739 20.1739Z" fill="currentColor"></path>
-    <path clip-rule="evenodd" d="M7.24189 26.4066C7.31369 26.4411 7.64204 26.5637 8.52504 26.3738C9.59462 26.1438 11.0343 25.5311 12.7183 24.4963C14.7583 23.2426 17.0256 21.4503 19.238 19.238C21.4503 17.0256 23.2426 14.7583 24.4963 12.7183C25.5311 11.0343 26.1438 9.59463 26.3738 8.52504C26.5637 7.64204 26.4411 7.31369 26.4066 7.24189C26.345 7.21246 26.143 7.14535 25.6664 7.1918C24.9745 7.25925 23.9954 7.5498 22.7699 8.14278C20.3369 9.32007 17.3369 11.4915 14.4142 14.4142C11.4915 17.3369 9.32007 20.3369 8.14278 22.7699C7.5498 23.9954 7.25925 24.9745 7.1918 25.6664C7.14534 26.143 7.21246 26.345 7.24189 26.4066ZM29.9001 10.7285C29.4519 12.0322 28.7617 13.4172 27.9042 14.8126C26.465 17.1544 24.4686 19.6641 22.0664 22.0664C19.6641 24.4686 17.1544 26.465 14.8126 27.9042C13.4172 28.7617 12.0322 29.4519 10.7285 29.9001L21.5754 40.747C21.6001 40.7606 21.8995 40.931 22.8729 40.7217C23.9424 40.4916 25.3821 39.879 27.0661 38.8441C29.1062 37.5904 31.3734 35.7982 33.5858 33.5858C35.7982 31.3734 37.5904 29.1062 38.8441 27.0661C39.879 25.3821 40.4916 23.9425 40.7216 22.8729C40.931 21.8995 40.7606 21.6001 40.747 21.5754L29.9001 10.7285ZM29.2403 4.41187L43.5881 18.7597C44.9757 20.1473 44.9743 22.1235 44.6322 23.7139C44.2714 25.3919 43.4158 27.2666 42.252 29.1604C40.8128 31.5022 38.8165 34.012 36.4142 36.4142C34.012 38.8165 31.5022 40.8128 29.1604 42.252C27.2666 43.4158 25.3919 44.2714 23.7139 44.6322C22.1235 44.9743 20.1473 44.9757 18.7597 43.5881L4.41187 29.2403C3.29027 28.1187 3.08209 26.5973 3.21067 25.2783C3.34099 23.9415 3.8369 22.4852 4.54214 21.0277C5.96129 18.0948 8.43335 14.7382 11.5858 11.5858C14.7382 8.43335 18.0948 5.9613 21.0277 4.54214C22.4852 3.8369 23.9415 3.34099 25.2783 3.21067C26.5973 3.08209 28.1187 3.29028 29.2403 4.41187Z" fill="currentColor" fill-rule="evenodd"></path>
-    </g>
-    <defs>
-    <clipPath id="clip0_6_543"><rect fill="white" height="48" width="48"></rect></clipPath>
-    </defs>
-    </svg>
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-black via-slate-900 to-black">
+    <div class="relative flex size-full min-h-screen flex-col bg-cover bg-center bg-fixed" style='font-family: Inter, "Noto Sans", sans-serif;'>
+        <div class="relative flex size-full min-h-screen flex-col dark group/design-root">
+            <div class="layout-container flex h-full grow flex-col">
+                <!-- Header -->
+                <header class="frosted-glass sticky top-0 z-50 flex items-center justify-between whitespace-nowrap border-b border-solid border-[var(--border-color)] bg-[var(--background-primary)] px-6 py-4 md:px-10">
+                    <div class="flex items-center gap-4 text-[var(--text-primary)]">
+                        <h2 class="text-[var(--text-primary)] text-xl font-semibold leading-tight tracking-[-0.015em]">
+                            <span class="font-bold">ShaiBha</span> Admin Panel
+                        </h2>
+                    </div>
+                    <div class="flex items-center gap-3">
+                    </div>
+                </header>
+
+                <div class="flex flex-1">
+                    <!-- Sidebar -->
+                    <aside class="frosted-glass sticky top-[73px] h-[calc(100vh-73px)] w-64 flex-col justify-between border-r border-solid border-[var(--border-color)] bg-[var(--background-primary)] p-4 hidden md:flex sidebar-glow-effect rounded-r-xl">
+                        <nav class="flex flex-col gap-2">
+                            <a class="sidebar-item flex items-center gap-3 px-3 py-2.5 text-[var(--text-primary)] transition-colors duration-200" href="../index.html">
+                                <span class="material-icons-outlined text-xl">dashboard</span>
+                                <p class="text-sm font-medium">Dashboard</p>
+                            </a>
+                            <a class="sidebar-item flex items-center gap-3 px-3 py-2.5 text-[var(--text-primary)] transition-colors duration-200" href="../orders/">
+                                <span class="material-icons-outlined text-xl">list_alt</span>
+                                <p class="text-sm font-medium">Orders</p>
+                            </a>
+                            <a class="sidebar-item active flex items-center gap-3 px-3 py-2.5 text-[var(--text-primary)] transition-colors duration-200" href="../products/">
+                                <span class="material-icons-outlined text-xl">inventory_2</span>
+                                <p class="text-sm font-medium">Products</p>
+                            </a>
+                            <a class="sidebar-item flex items-center gap-3 px-3 py-2.5 text-[var(--text-primary)] transition-colors duration-200" href="../customers/">
+                                <span class="material-icons-outlined text-xl">group</span>
+                                <p class="text-sm font-medium">Customers</p>
+                            </a>
+                            <a class="sidebar-item flex items-center gap-3 px-3 py-2.5 text-[var(--text-primary)] transition-colors duration-200" href="../reports/">
+                                <span class="material-icons-outlined text-xl">bar_chart</span>
+                                <p class="text-sm font-medium">Reports</p>
+                            </a>
+                        </nav>
+                        <div class="flex flex-col gap-1 pt-4 border-t border-[var(--border-color)] mt-auto">
+                            <a class="sidebar-item flex items-center gap-3 px-3 py-2.5 text-[var(--text-primary)] transition-colors duration-200" href="#">
+                                <span class="material-icons-outlined text-xl">logout</span>
+                                <p class="text-sm font-medium">Logout</p>
+                            </a>
+                        </div>
+                    </aside>
+
+                    <!-- Main Content -->
+                    <main class="flex-1 p-6 md:p-10 overflow-y-auto">
+                        <div class="frosted-glass rounded-xl p-6">
+                            <div class="flex flex-wrap justify-between items-center gap-4 mb-6">
+                                <h1 class="text-[var(--text-primary)] text-3xl font-bold">Product Inventory</h1>
+                                <button class="bg-[var(--accent-color)] text-white px-4 py-2 rounded-lg text-sm font-medium flex items-center gap-2 hover:opacity-90 transition-opacity">
+                                    <svg fill="currentColor" height="16" viewBox="0 0 256 256" width="16" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M224,128a8,8,0,0,1-8,8H136v80a8,8,0,0,1-16,0V136H40a8,8,0,0,1,0-16h80V40a8,8,0,0,1,16,0v80h80A8,8,0,0,1,224,128Z"></path>
+                                    </svg>
+                                    Add Product
+                                </button>
+                            </div>
+                            <div class="flex gap-3 mb-6 flex-wrap">
+                                <button class="flex h-9 items-center justify-center gap-x-2 rounded-md px-4 py-1.5 text-sm font-medium bg-[var(--background-secondary)] border border-[var(--border-color)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors">
+                                    Stock Level
+                                    <svg fill="currentColor" height="16px" viewBox="0 0 256 256" width="16px" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M213.66,101.66l-80,80a8,8,0,0,1-11.32,0l-80-80A8,8,0,0,1,53.66,90.34L128,164.69l74.34-74.35a8,8,0,0,1,11.32,11.32Z"></path>
+                                    </svg>
+                                </button>
+                                <button class="flex h-9 items-center justify-center gap-x-2 rounded-md px-4 py-1.5 text-sm font-medium bg-[var(--background-secondary)] border border-[var(--border-color)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors">
+                                    Category
+                                    <svg fill="currentColor" height="16px" viewBox="0 0 256 256" width="16px" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M213.66,101.66l-80,80a8,8,0,0,1-11.32,0l-80-80A8,8,0,0,1,53.66,90.34L128,164.69l74.34-74.35a8,8,0,0,1,11.32,11.32Z"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                            <div class="frosted-glass overflow-hidden">
+                                <table class="w-full text-left">
+                                    <thead class="border-b border-[var(--border-color)]">
+                                        <tr>
+                                            <th class="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-white">Product</th>
+                                            <th class="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-white">Category</th>
+                                            <th class="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-white">Stock</th>
+                                            <th class="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-white">Price</th>
+                                            <th class="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-white">Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="divide-y divide-[var(--border-color)]">
+                                        <tr class="hover:bg-[rgba(255,255,255,0.03)]">
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-[var(--text-primary)]">Elegant Silk Scarf</td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--text-secondary)]">Apparel</td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--text-secondary)]">150</td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--text-secondary)]">₹3,750.00</td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <span class="status-badge status-in-stock">In Stock</span>
+                                            </td>
+                                        </tr>
+                                        <tr class="hover:bg-[rgba(255,255,255,0.03)]">
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-[var(--text-primary)]">Cozy Cashmere Sweater</td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--text-secondary)]">Apparel</td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--text-secondary)]">80</td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--text-secondary)]">₹10,000.00</td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <span class="status-badge status-in-stock">In Stock</span>
+                                            </td>
+                                        </tr>
+                                        <tr class="hover:bg-[rgba(255,255,255,0.03)]">
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-[var(--text-primary)]">Classic Leather Handbag</td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--text-secondary)]">Bags</td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--text-secondary)]">50</td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--text-secondary)]">₹20,833.33</td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <span class="status-badge status-low-stock">Low Stock</span>
+                                            </td>
+                                        </tr>
+                                        <tr class="hover:bg-[rgba(255,255,255,0.03)]">
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-[var(--text-primary)]">Stylish Sunglasses</td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--text-secondary)]">Accessories</td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--text-secondary)]">200</td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--text-secondary)]">₹5,000.00</td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <span class="status-badge status-in-stock">In Stock</span>
+                                            </td>
+                                        </tr>
+                                        <tr class="hover:bg-[rgba(255,255,255,0.03)]">
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-[var(--text-primary)]">Comfortable Cotton T-Shirt</td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--text-secondary)]">Apparel</td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--text-secondary)]">0</td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--text-secondary)]">₹2,083.33</td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <span class="status-badge status-out-of-stock">Out of Stock</span>
+                                            </td>
+                                        </tr>
+                                        <tr class="hover:bg-[rgba(255,255,255,0.03)]">
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-[var(--text-primary)]">Durable Denim Jeans</td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--text-secondary)]">Apparel</td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--text-secondary)]">120</td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--text-secondary)]">₹6,666.67</td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <span class="status-badge status-in-stock">In Stock</span>
+                                            </td>
+                                        </tr>
+                                        <tr class="hover:bg-[rgba(255,255,255,0.03)]">
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-[var(--text-primary)]">Sporty Running Shoes</td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--text-secondary)]">Footwear</td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--text-secondary)]">90</td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--text-secondary)]">₹8,333.33</td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <span class="status-badge status-in-stock">In Stock</span>
+                                            </td>
+                                        </tr>
+                                        <tr class="hover:bg-[rgba(255,255,255,0.03)]">
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-[var(--text-primary)]">Chic Ankle Boots</td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--text-secondary)]">Footwear</td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--text-secondary)]">15</td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--text-secondary)]">₹12,500.00</td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <span class="status-badge status-low-stock">Low Stock</span>
+                                            </td>
+                                        </tr>
+                                        <tr class="hover:bg-[rgba(255,255,255,0.03)]">
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-[var(--text-primary)]">Formal Dress Shirt</td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--text-secondary)]">Apparel</td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--text-secondary)]">180</td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--text-secondary)]">₹4,583.33</td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <span class="status-badge status-in-stock">In Stock</span>
+                                            </td>
+                                        </tr>
+                                        <tr class="hover:bg-[rgba(255,255,255,0.03)]">
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-[var(--text-primary)]">Casual Sneakers</td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--text-secondary)]">Footwear</td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--text-secondary)]">110</td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--text-secondary)]">₹5,833.33</td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <span class="status-badge status-in-stock">In Stock</span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </main>
+                </div>
+            </div>
+        </div>
     </div>
-    <h2 class="text-[rgb(var(--foreground-rgb))] text-xl font-bold">Fashion Store</h2>
-    </div>
-    <nav class="hidden md:flex items-center gap-6">
-    <a class="header-link text-sm font-medium" href="#">Dashboard</a>
-    <a class="header-link-active text-sm font-medium" href="#">Products</a>
-    <a class="header-link text-sm font-medium" href="#">Orders</a>
-    <a class="header-link text-sm font-medium" href="#">Customers</a>
-    <a class="header-link text-sm font-medium" href="#">Analytics</a>
-    </nav>
-    </div>
-    <div class="flex items-center gap-4">
-    <label class="relative hidden md:flex flex-col min-w-40 !h-10 max-w-64">
-    <div class="flex w-full flex-1 items-stretch rounded-lg h-full search-input">
-    <div class="text-[rgb(var(--muted-foreground-rgb))] flex items-center justify-center pl-3" data-icon="MagnifyingGlass" data-size="20px" data-weight="regular">
-    <svg fill="currentColor" height="20px" viewBox="0 0 256 256" width="20px" xmlns="http://www.w3.org/2000/svg">
-    <path d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"></path>
-    </svg>
-    </div>
-    <input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-[rgb(var(--foreground-rgb))] focus:outline-0 focus:ring-0 border-none bg-transparent h-full placeholder:text-[rgb(var(--muted-foreground-rgb))] px-3 text-sm font-normal" placeholder="Search products..." value=""/>
-    </div>
-    </label>
-    <button class="flex cursor-pointer items-center justify-center rounded-full h-10 w-10 bg-[rgb(var(--card-rgb))] border border-[rgb(var(--card-border-rgb))] text-[rgb(var(--muted-foreground-rgb))] hover:text-[rgb(var(--foreground-rgb))] transition-colors">
-    <div data-icon="Bell" data-size="20px" data-weight="regular">
-    <svg fill="currentColor" height="20px" viewBox="0 0 256 256" width="20px" xmlns="http://www.w3.org/2000/svg">
-    <path d="M221.8,175.94C216.25,166.38,208,139.33,208,104a80,80,0,1,0-160,0c0,35.34-8.26,62.38-13.81,71.94A16,16,0,0,0,48,200H88.81a40,40,0,0,0,78.38,0H208a16,16,0,0,0,13.8-24.06ZM128,216a24,24,0,0,1-22.62-16h45.24A24,24,0,0,1,128,216ZM48,184c7.7-13.24,16-43.92,16-80a64,64,0,1,1,128,0c0,36.05,8.28,66.73,16,80Z"></path>
-    </svg>
-    </div>
-    </button>
-    <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border-2 border-[rgb(var(--card-border-rgb))]" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDWq9XHHSNrwdVZ9-vGEu1Wh8C5ywBREUBfGQRWR14trMeH6vvN0ZNjHkkp6buq8qfXpDCVfVtbDu7lmaWQ6rYlDoT203gX2toRsGOBXzz4qvPAqnNCdEbbF5m30YEXsvSWvpgZOTXJUavYkYHaIJNOmqDxJhKJi57UoeVqwDBmdNakzgfYnr5sGhYsf0BIzyoKRWinB4v7FzxviwDHWja_Iqkjx7OmPKdBr2BYYAwRoq6Y0WzPSEY-rXlqaHWAD96YpdcBOKILXg");'></div>
-    </div>
-    </header>
-    <main class="px-6 md:px-10 lg:px-20 xl:px-40 flex flex-1 justify-center py-8">
-    <div class="layout-content-container flex flex-col w-full max-w-6xl"> {}
-                <div class="flex flex-wrap justify-between items-center gap-4 mb-6">
-    <h1 class="text-[rgb(var(--foreground-rgb))] text-3xl font-bold">Product Inventory</h1>
-    <button class="bg-[var(--primary-color)] text-white px-4 py-2 rounded-lg text-sm font-medium flex items-center gap-2 hover:opacity-90 transition-opacity">
-    <svg fill="currentColor" height="16" viewBox="0 0 256 256" width="16" xmlns="http://www.w3.org/2000/svg"><path d="M224,128a8,8,0,0,1-8,8H136v80a8,8,0,0,1-16,0V136H40a8,8,0,0,1,0-16h80V40a8,8,0,0,1,16,0v80h80A8,8,0,0,1,224,128Z"></path></svg>
-                    Add Product
-                  </button>
-    </div>
-    <div class="flex gap-3 mb-6 flex-wrap">
-    <button class="filter-button flex h-9 items-center justify-center gap-x-2 rounded-md px-4 py-1.5 text-sm font-medium">
-                    Stock Level
-                    <div class="text-[rgb(var(--muted-foreground-rgb))]" data-icon="CaretDown" data-size="16px" data-weight="regular">
-    <svg fill="currentColor" height="16px" viewBox="0 0 256 256" width="16px" xmlns="http://www.w3.org/2000/svg">
-    <path d="M213.66,101.66l-80,80a8,8,0,0,1-11.32,0l-80-80A8,8,0,0,1,53.66,90.34L128,164.69l74.34-74.35a8,8,0,0,1,11.32,11.32Z"></path>
-    </svg>
-    </div>
-    </button>
-    <button class="filter-button flex h-9 items-center justify-center gap-x-2 rounded-md px-4 py-1.5 text-sm font-medium">
-                    Category
-                    <div class="text-[rgb(var(--muted-foreground-rgb))]" data-icon="CaretDown" data-size="16px" data-weight="regular">
-    <svg fill="currentColor" height="16px" viewBox="0 0 256 256" width="16px" xmlns="http://www.w3.org/2000/svg">
-    <path d="M213.66,101.66l-80,80a8,8,0,0,1-11.32,0l-80-80A8,8,0,0,1,53.66,90.34L128,164.69l74.34-74.35a8,8,0,0,1,11.32,11.32Z"></path>
-    </svg>
-    </div>
-    </button>
-    </div>
-    <div class="@container">
-    <div class="frosted-glass-table">
-    <table class="w-full text-left">
-    <thead class="text-xs text-[rgb(var(--muted-foreground-rgb))] uppercase table-header">
-    <tr>
-    <th class="table-cell text-sm font-semibold text-[rgb(var(--foreground-rgb))]" scope="col">Name</th>
-    <th class="table-cell text-sm font-semibold text-[rgb(var(--foreground-rgb))]" scope="col">Stock</th>
-    <th class="table-cell text-sm font-semibold text-[rgb(var(--foreground-rgb))]" scope="col">Price</th>
-    <th class="table-cell text-sm font-semibold text-[rgb(var(--foreground-rgb))]" scope="col">Status</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr class="hover:bg-[rgba(var(--card-rgb),0.5)] transition-colors">
-    <td class="table-cell text-[rgb(var(--foreground-rgb))] font-medium" data-label="Name">Elegant Silk Scarf</td>
-    <td class="table-cell text-[rgb(var(--muted-foreground-rgb))]" data-label="Stock">150</td>
-    <td class="table-cell text-[rgb(var(--muted-foreground-rgb))]" data-label="Price">₹3,750.00</td>
-    <td class="table-cell" data-label="Status">
-    <span class="status-badge status-in-stock">In Stock</span>
-    </td>
-    </tr>
-    <tr class="hover:bg-[rgba(var(--card-rgb),0.5)] transition-colors">
-    <td class="table-cell text-[rgb(var(--foreground-rgb))] font-medium" data-label="Name">Cozy Cashmere Sweater</td>
-    <td class="table-cell text-[rgb(var(--muted-foreground-rgb))]" data-label="Stock">80</td>
-    <td class="table-cell text-[rgb(var(--muted-foreground-rgb))]" data-label="Price">₹10,000.00</td>
-    <td class="table-cell" data-label="Status">
-    <span class="status-badge status-in-stock">In Stock</span>
-    </td>
-    </tr>
-    <tr class="hover:bg-[rgba(var(--card-rgb),0.5)] transition-colors">
-    <td class="table-cell text-[rgb(var(--foreground-rgb))] font-medium" data-label="Name">Classic Leather Handbag</td>
-    <td class="table-cell text-[rgb(var(--muted-foreground-rgb))]" data-label="Stock">50</td>
-    <td class="table-cell text-[rgb(var(--muted-foreground-rgb))]" data-label="Price">₹20,833.33</td>
-    <td class="table-cell" data-label="Status">
-    <span class="status-badge status-low-stock">Low Stock</span>
-    </td>
-    </tr>
-    <tr class="hover:bg-[rgba(var(--card-rgb),0.5)] transition-colors">
-    <td class="table-cell text-[rgb(var(--foreground-rgb))] font-medium" data-label="Name">Stylish Sunglasses</td>
-    <td class="table-cell text-[rgb(var(--muted-foreground-rgb))]" data-label="Stock">200</td>
-    <td class="table-cell text-[rgb(var(--muted-foreground-rgb))]" data-label="Price">₹5,000.00</td>
-    <td class="table-cell" data-label="Status">
-    <span class="status-badge status-in-stock">In Stock</span>
-    </td>
-    </tr>
-    <tr class="hover:bg-[rgba(var(--card-rgb),0.5)] transition-colors">
-    <td class="table-cell text-[rgb(var(--foreground-rgb))] font-medium" data-label="Name">Comfortable Cotton T-Shirt</td>
-    <td class="table-cell text-[rgb(var(--muted-foreground-rgb))]" data-label="Stock">0</td>
-    <td class="table-cell text-[rgb(var(--muted-foreground-rgb))]" data-label="Price">₹2,083.33</td>
-    <td class="table-cell" data-label="Status">
-    <span class="status-badge status-out-of-stock">Out of Stock</span>
-    </td>
-    </tr>
-    <tr class="hover:bg-[rgba(var(--card-rgb),0.5)] transition-colors">
-    <td class="table-cell text-[rgb(var(--foreground-rgb))] font-medium" data-label="Name">Durable Denim Jeans</td>
-    <td class="table-cell text-[rgb(var(--muted-foreground-rgb))]" data-label="Stock">120</td>
-    <td class="table-cell text-[rgb(var(--muted-foreground-rgb))]" data-label="Price">₹6,666.67</td>
-    <td class="table-cell" data-label="Status">
-    <span class="status-badge status-in-stock">In Stock</span>
-    </td>
-    </tr>
-    <tr class="hover:bg-[rgba(var(--card-rgb),0.5)] transition-colors">
-    <td class="table-cell text-[rgb(var(--foreground-rgb))] font-medium" data-label="Name">Sporty Running Shoes</td>
-    <td class="table-cell text-[rgb(var(--muted-foreground-rgb))]" data-label="Stock">90</td>
-    <td class="table-cell text-[rgb(var(--muted-foreground-rgb))]" data-label="Price">₹8,333.33</td>
-    <td class="table-cell" data-label="Status">
-    <span class="status-badge status-in-stock">In Stock</span>
-    </td>
-    </tr>
-    <tr class="hover:bg-[rgba(var(--card-rgb),0.5)] transition-colors">
-    <td class="table-cell text-[rgb(var(--foreground-rgb))] font-medium" data-label="Name">Chic Ankle Boots</td>
-    <td class="table-cell text-[rgb(var(--muted-foreground-rgb))]" data-label="Stock">15</td>
-    <td class="table-cell text-[rgb(var(--muted-foreground-rgb))]" data-label="Price">₹12,500.00</td>
-    <td class="table-cell" data-label="Status">
-    <span class="status-badge status-low-stock">Low Stock</span>
-    </td>
-    </tr>
-    <tr class="hover:bg-[rgba(var(--card-rgb),0.5)] transition-colors">
-    <td class="table-cell text-[rgb(var(--foreground-rgb))] font-medium" data-label="Name">Formal Dress Shirt</td>
-    <td class="table-cell text-[rgb(var(--muted-foreground-rgb))]" data-label="Stock">180</td>
-    <td class="table-cell text-[rgb(var(--muted-foreground-rgb))]" data-label="Price">₹4,583.33</td>
-    <td class="table-cell" data-label="Status">
-    <span class="status-badge status-in-stock">In Stock</span>
-    </td>
-    </tr>
-    <tr class="hover:bg-[rgba(var(--card-rgb),0.5)] transition-colors">
-    <td class="table-cell text-[rgb(var(--foreground-rgb))] font-medium" data-label="Name">Casual Sneakers</td>
-    <td class="table-cell text-[rgb(var(--muted-foreground-rgb))]" data-label="Stock">110</td>
-    <td class="table-cell text-[rgb(var(--muted-foreground-rgb))]" data-label="Price">₹5,833.33</td>
-    <td class="table-cell" data-label="Status">
-    <span class="status-badge status-in-stock">In Stock</span>
-    </td>
-    </tr>
-    </tbody>
-    </table>
-    </div>
-    </div>
-    </div>
-    </main>
-    </div>
-    </div>
-    </body></html>
+</body>
+</html>
