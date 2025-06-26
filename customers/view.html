@@ -1,22 +1,39 @@
 <html><head>
-    <link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect"/>
-    <link as="style" href="https://fonts.googleapis.com/css2?display=swap&amp;family=Noto+Sans%3Awght%40400%3B500%3B700%3B900&amp;family=Plus+Jakarta+Sans%3Awght%40400%3B500%3B700%3B800" onload="this.rel='stylesheet'" rel="stylesheet"/>
-    <title>Customer Profile</title>
     <meta charset="utf-8"/>
+    <link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect"/>
+    <link as="style" href="https://fonts.googleapis.com/css2?display=swap&amp;family=Inter%3Awght%40400%3B500%3B600%3B700%3B900&amp;family=Noto+Sans%3Awght%40400%3B500%3B700%3B900" onload="this.rel='stylesheet'" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet"/>
+    <title>Customer Profile</title>
     <link href="data:image/x-icon;base64," rel="icon" type="image/x-icon"/>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <style type="text/tailwindcss">
           :root {
-            --background-glass: rgba(42, 42, 42, 0.6);--border-glass: rgba(77, 77, 77, 0.7);
+            --background-primary: rgba(20, 20, 20, 0.7);
+            --background-secondary: rgba(48, 48, 48, 0.7);
+            --border-color: rgba(48, 48, 48, 0.9);
             --text-primary: #ffffff;
-            --text-secondary: #b0b0b0;--accent-color: #4f46e5;--border-color: #4d4d4d;
+            --text-secondary: #ababab;
+            --blur-intensity: 10px;
+            --sidebar-glow: 0 0 20px 5px rgba(128, 128, 255, 0.2);
+            --accent-color: #4f46e5;
           }
-          .glass-card {
-            background-color: var(--background-glass);
-            border: 1px solid var(--border-glass);
-            backdrop-filter: blur(12px);-webkit-backdrop-filter: blur(12px);border-radius: 16px;box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);}
+          .frosted-glass {
+            backdrop-filter: blur(var(--blur-intensity));
+            -webkit-backdrop-filter: blur(var(--blur-intensity));
+          }
+          .sidebar-item:hover, .sidebar-item.active {
+            background-color: var(--background-secondary) !important;
+            border-radius: 0.5rem;
+          }
+          .icon-button:hover {
+            background-color: rgba(75, 75, 75, 0.7) !important;
+          }
+          .sidebar-glow-effect {
+            box-shadow: var(--sidebar-glow);
+          }
           .status-badge {
-            padding: 0.375rem 0.875rem;border-radius: 9999px;
+            padding: 0.375rem 0.875rem;
+            border-radius: 9999px;
             font-size: 0.875rem;
             font-weight: 500;
             display: inline-flex;
@@ -37,44 +54,57 @@
           }
         </style>
     </head>
-    <body class="bg-[#161616] dark" style='font-family: "Plus Jakarta Sans", "Noto Sans", sans-serif;'>
-    <div class="relative flex size-full min-h-screen flex-col overflow-x-hidden">
-    <div class="flex h-full grow flex-col">
-    <header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#303030] px-10 py-4 shadow-sm">
-    <div class="flex items-center gap-4 text-white">
-    <div class="size-5 text-[var(--accent-color)]">
-    <svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-    <g clip-path="url(#clip0_6_319)">
-    <path d="M8.57829 8.57829C5.52816 11.6284 3.451 15.5145 2.60947 19.7452C1.76794 23.9758 2.19984 28.361 3.85056 32.3462C5.50128 36.3314 8.29667 39.7376 11.8832 42.134C15.4698 44.5305 19.6865 45.8096 24 45.8096C28.3135 45.8096 32.5302 44.5305 36.1168 42.134C39.7033 39.7375 42.4987 36.3314 44.1494 32.3462C45.8002 28.361 46.2321 23.9758 45.3905 19.7452C44.549 15.5145 42.4718 11.6284 39.4217 8.57829L24 24L8.57829 8.57829Z" fill="currentColor"></path>
-    </g>
-    <defs>
-    <clipPath id="clip0_6_319"><rect fill="white" height="48" width="48"></rect></clipPath>
-    </defs>
-    </svg>
+    <body class="bg-gradient-to-br from-black via-slate-900 to-black">
+    <div class="relative flex size-full min-h-screen flex-col bg-cover bg-center bg-fixed" style='font-family: Inter, "Noto Sans", sans-serif;'>
+    <div class="relative flex size-full min-h-screen flex-col dark group/design-root overflow-x-hidden">
+    <div class="layout-container flex h-full grow flex-col">
+    <header class="frosted-glass sticky top-0 z-50 flex items-center justify-between whitespace-nowrap border-b border-solid border-[var(--border-color)] bg-[var(--background-primary)] px-6 py-4 md:px-10">
+    <div class="flex items-center gap-4 text-[var(--text-primary)]">
+    <h2 class="text-[var(--text-primary)] text-xl font-semibold leading-tight tracking-[-0.015em]">
+    <span class="font-bold">ShaiBha</span> Admin Panel
+    </h2>
     </div>
-    <h2 class="text-white text-xl font-bold tracking-tight">Acme Co</h2>
-    </div>
-    <nav class="flex items-center gap-6">
-    <a class="text-gray-300 hover:text-white text-sm font-medium transition-colors" href="#">Dashboard</a>
-    <a class="text-gray-300 hover:text-white text-sm font-medium transition-colors" href="#">Products</a>
-    <a class="text-white text-sm font-medium transition-colors" href="#">Customers</a>
-    <a class="text-gray-300 hover:text-white text-sm font-medium transition-colors" href="#">Orders</a>
-    <a class="text-gray-300 hover:text-white text-sm font-medium transition-colors" href="#">Analytics</a>
-    </nav>
-    <div class="flex items-center gap-4">
-    <button aria-label="Notifications" class="flex items-center justify-center rounded-full h-10 w-10 bg-[#252525] hover:bg-[#303030] text-gray-300 hover:text-white transition-colors">
-    <svg fill="currentColor" height="20px" viewBox="0 0 256 256" width="20px" xmlns="http://www.w3.org/2000/svg">
-    <path d="M221.8,175.94C216.25,166.38,208,139.33,208,104a80,80,0,1,0-160,0c0,35.34-8.26,62.38-13.81,71.94A16,16,0,0,0,48,200H88.81a40,40,0,0,0,78.38,0H208a16,16,0,0,0,13.8-24.06ZM128,216a24,24,0,0,1-22.62-16h45.24A24,24,0,0,1,128,216ZM48,184c7.7-13.24,16-43.92,16-80a64,64,0,1,1,128,0c0,36.05,8.28,66.73,16,80Z"></path>
-    </svg>
-    </button>
-    <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border-2 border-[var(--accent-color)]" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBzv7Q5fZv5DV1h2SytCTINXxwKtoCBKIn2odQu0CMryNUU7jec_wSZsX_pdYj8DThKQK4B4FVJP0RDSCxm-w9VmiznSKAfCgQ8JULBNHOYlexF8tF8zIjeo0XgXr0Uqaob7G2Fcevie-xoT1uud0E_dppSY90mPvyxrP3a58Mi9cSicc4kgt89aVXjOSCcESsCWgHD8TCeTDjp-M9IYBUDa03S-x0i4XuR39fogBTmt2BaVgZtvN_2m8LxaCFlc2JT7SM0jqGUkQ");'></div>
+    <div class="flex items-center gap-3">
+    <!-- Logo element removed from here -->
     </div>
     </header>
-    <main class="px-10 lg:px-20 xl:px-40 py-8 flex-1">
-    <div class="max-w-5xl mx-auto space-y-8">
-    <h1 class="text-white text-4xl font-bold tracking-tight">Customer Profile</h1>
-    <section class="glass-card p-6 sm:p-8">
-    <h2 class="text-white text-2xl font-semibold mb-6">Contact Info</h2>
+    <div class="flex flex-1">
+    <aside class="frosted-glass sticky top-[73px] h-[calc(100vh-73px)] w-64 flex-col justify-between border-r border-solid border-[var(--border-color)] bg-[var(--background-primary)] p-4 hidden md:flex sidebar-glow-effect rounded-r-xl">
+    <nav class="flex flex-col gap-2">
+    <a class="sidebar-item flex items-center gap-3 px-3 py-2.5 text-[var(--text-primary)] transition-colors duration-200 hover:bg-[var(--background-secondary)] hover:rounded-lg" href="#">
+    <span class="material-icons-outlined text-xl">dashboard</span>
+    <p class="text-sm font-medium">Dashboard</p>
+    </a>
+    <a class="sidebar-item flex items-center gap-3 px-3 py-2.5 text-[var(--text-primary)] transition-colors duration-200 hover:bg-[var(--background-secondary)] hover:rounded-lg" href="#">
+    <span class="material-icons-outlined text-xl">list_alt</span>
+    <p class="text-sm font-medium">Orders</p>
+    </a>
+    <a class="sidebar-item flex items-center gap-3 px-3 py-2.5 text-[var(--text-primary)] transition-colors duration-200 hover:bg-[var(--background-secondary)] hover:rounded-lg" href="#">
+    <span class="material-icons-outlined text-xl">inventory_2</span>
+    <p class="text-sm font-medium">Products</p>
+    </a>
+    <a class="sidebar-item active flex items-center gap-3 px-3 py-2.5 text-[var(--text-primary)] transition-colors duration-200" href="#">
+    <span class="material-icons-outlined text-xl">group</span>
+    <p class="text-sm font-medium">Customers</p>
+    </a>
+    <a class="sidebar-item flex items-center gap-3 px-3 py-2.5 text-[var(--text-primary)] transition-colors duration-200 hover:bg-[var(--background-secondary)] hover:rounded-lg" href="#">
+    <span class="material-icons-outlined text-xl">bar_chart</span>
+    <p class="text-sm font-medium">Reports</p>
+    </a>
+    </nav>
+    <div class="flex flex-col gap-1 pt-4 border-t border-[var(--border-color)] mt-auto">
+    <a class="sidebar-item flex items-center gap-3 px-3 py-2.5 text-[var(--text-primary)] transition-colors duration-200 hover:bg-[var(--background-secondary)] hover:rounded-lg" href="#">
+    <span class="material-icons-outlined text-xl">logout</span>
+    <p class="text-sm font-medium">Logout</p>
+    </a>
+    </div>
+    </aside>
+    <main class="flex-1 p-6 md:p-10 overflow-y-auto">
+    <div class="mb-8">
+    <p class="text-[var(--text-primary)] text-3xl font-bold leading-tight">Customer Profile</p>
+    </div>
+    <section class="frosted-glass rounded-xl p-6 bg-[var(--background-secondary)] shadow-lg mb-8">
+    <h2 class="text-[var(--text-primary)] text-2xl font-semibold mb-6">Contact Info</h2>
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-6">
     <div>
     <p class="text-[var(--text-secondary)] text-sm">Name</p>
@@ -94,49 +124,51 @@
     </div>
     </div>
     </section>
-    <section class="glass-card p-6 sm:p-8">
-    <h2 class="text-white text-2xl font-semibold mb-6">Order History</h2>
-    <div class="overflow-x-auto @container">
-    <table class="w-full min-w-[600px]">
-    <thead>
-    <tr class="border-b border-[var(--border-color)]">
-    <th class="px-4 py-3 text-left text-[var(--text-secondary)] text-xs font-medium uppercase tracking-wider">Order ID</th>
-    <th class="px-4 py-3 text-left text-[var(--text-secondary)] text-xs font-medium uppercase tracking-wider">Date</th>
-    <th class="px-4 py-3 text-left text-[var(--text-secondary)] text-xs font-medium uppercase tracking-wider">Status</th>
-    <th class="px-4 py-3 text-left text-[var(--text-secondary)] text-xs font-medium uppercase tracking-wider">Total</th>
+    <section class="frosted-glass rounded-xl p-6 bg-[var(--background-secondary)] shadow-lg mb-8">
+    <h2 class="text-[var(--text-primary)] text-2xl font-semibold mb-6">Order History</h2>
+    <div class="frosted-glass @container overflow-hidden rounded-xl border border-[var(--border-color)] bg-[var(--background-primary)] shadow-lg">
+    <div class="overflow-x-auto">
+    <table class="min-w-full">
+    <thead class="bg-white/5">
+    <tr>
+    <th class="px-6 py-4 text-left text-[var(--text-secondary)] text-xs font-medium uppercase tracking-wider">Order ID</th>
+    <th class="px-6 py-4 text-left text-[var(--text-secondary)] text-xs font-medium uppercase tracking-wider">Date</th>
+    <th class="px-6 py-4 text-left text-[var(--text-secondary)] text-xs font-medium uppercase tracking-wider">Status</th>
+    <th class="px-6 py-4 text-left text-[var(--text-secondary)] text-xs font-medium uppercase tracking-wider">Total</th>
     </tr>
     </thead>
     <tbody class="divide-y divide-[var(--border-color)]">
     <tr>
-    <td class="px-4 py-4 whitespace-nowrap text-[var(--text-primary)] text-sm">#12345</td>
-    <td class="px-4 py-4 whitespace-nowrap text-[var(--text-secondary)] text-sm">2023-01-15</td>
-    <td class="px-4 py-4 whitespace-nowrap">
+    <td class="px-6 py-4 whitespace-nowrap text-[var(--text-primary)] text-sm font-medium">#12345</td>
+    <td class="px-6 py-4 whitespace-nowrap text-[var(--text-secondary)] text-sm">2023-01-15</td>
+    <td class="px-6 py-4 whitespace-nowrap">
     <span class="status-badge status-shipped">Shipped</span>
     </td>
-    <td class="px-4 py-4 whitespace-nowrap text-[var(--text-secondary)] text-sm">₹12,500.00</td>
+    <td class="px-6 py-4 whitespace-nowrap text-[var(--text-secondary)] text-sm">₹12,500.00</td>
     </tr>
     <tr>
-    <td class="px-4 py-4 whitespace-nowrap text-[var(--text-primary)] text-sm">#12346</td>
-    <td class="px-4 py-4 whitespace-nowrap text-[var(--text-secondary)] text-sm">2023-02-20</td>
-    <td class="px-4 py-4 whitespace-nowrap">
+    <td class="px-6 py-4 whitespace-nowrap text-[var(--text-primary)] text-sm font-medium">#12346</td>
+    <td class="px-6 py-4 whitespace-nowrap text-[var(--text-secondary)] text-sm">2023-02-20</td>
+    <td class="px-6 py-4 whitespace-nowrap">
     <span class="status-badge status-delivered">Delivered</span>
     </td>
-    <td class="px-4 py-4 whitespace-nowrap text-[var(--text-secondary)] text-sm">₹16,700.00</td>
+    <td class="px-6 py-4 whitespace-nowrap text-[var(--text-secondary)] text-sm">₹16,700.00</td>
     </tr>
     <tr>
-    <td class="px-4 py-4 whitespace-nowrap text-[var(--text-primary)] text-sm">#12347</td>
-    <td class="px-4 py-4 whitespace-nowrap text-[var(--text-secondary)] text-sm">2023-03-25</td>
-    <td class="px-4 py-4 whitespace-nowrap">
+    <td class="px-6 py-4 whitespace-nowrap text-[var(--text-primary)] text-sm font-medium">#12347</td>
+    <td class="px-6 py-4 whitespace-nowrap text-[var(--text-secondary)] text-sm">2023-03-25</td>
+    <td class="px-6 py-4 whitespace-nowrap">
     <span class="status-badge status-cancelled">Cancelled</span>
     </td>
-    <td class="px-4 py-4 whitespace-nowrap text-[var(--text-secondary)] text-sm">₹4,150.00</td>
+    <td class="px-6 py-4 whitespace-nowrap text-[var(--text-secondary)] text-sm">₹4,150.00</td>
     </tr>
     </tbody>
     </table>
     </div>
+    </div>
     </section>
-    <section class="glass-card p-6 sm:p-8">
-    <h2 class="text-white text-2xl font-semibold mb-6">Activity Logs</h2>
+    <section class="frosted-glass rounded-xl p-6 bg-[var(--background-secondary)] shadow-lg">
+    <h2 class="text-[var(--text-primary)] text-2xl font-semibold mb-6">Activity Logs</h2>
     <div class="space-y-6">
     <div class="flex items-start timeline-item">
     <div class="flex flex-col items-center mr-4">
@@ -180,9 +212,10 @@
     </div>
     </div>
     </div>
-    </section>
     </div>
-    </main>
+    </section></main>
+    </div>
+    </div>
     </div>
     </div>
     </body></html>
