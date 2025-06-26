@@ -1,0 +1,188 @@
+<html><head>
+    <link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect"/>
+    <link as="style" href="https://fonts.googleapis.com/css2?display=swap&amp;family=Noto+Sans%3Awght%40400%3B500%3B700%3B900&amp;family=Plus+Jakarta+Sans%3Awght%40400%3B500%3B700%3B800" onload="this.rel='stylesheet'" rel="stylesheet"/>
+    <title>Customer Profile</title>
+    <meta charset="utf-8"/>
+    <link href="data:image/x-icon;base64," rel="icon" type="image/x-icon"/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <style type="text/tailwindcss">
+          :root {
+            --background-glass: rgba(42, 42, 42, 0.6);--border-glass: rgba(77, 77, 77, 0.7);
+            --text-primary: #ffffff;
+            --text-secondary: #b0b0b0;--accent-color: #4f46e5;--border-color: #4d4d4d;
+          }
+          .glass-card {
+            background-color: var(--background-glass);
+            border: 1px solid var(--border-glass);
+            backdrop-filter: blur(12px);-webkit-backdrop-filter: blur(12px);border-radius: 16px;box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);}
+          .status-badge {
+            padding: 0.375rem 0.875rem;border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+          }
+          .status-shipped {
+            background-color: rgba(59, 130, 246, 0.2);color: #60a5fa;
+          }
+          .status-delivered {
+            background-color: rgba(34, 197, 94, 0.2);color: #4ade80;
+          }
+          .status-cancelled {
+            background-color: rgba(239, 68, 68, 0.2);color: #f87171;
+          }
+          .timeline-item:last-child .timeline-line {
+            display: none;
+          }
+        </style>
+    </head>
+    <body class="bg-[#161616] dark" style='font-family: "Plus Jakarta Sans", "Noto Sans", sans-serif;'>
+    <div class="relative flex size-full min-h-screen flex-col overflow-x-hidden">
+    <div class="flex h-full grow flex-col">
+    <header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#303030] px-10 py-4 shadow-sm">
+    <div class="flex items-center gap-4 text-white">
+    <div class="size-5 text-[var(--accent-color)]">
+    <svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+    <g clip-path="url(#clip0_6_319)">
+    <path d="M8.57829 8.57829C5.52816 11.6284 3.451 15.5145 2.60947 19.7452C1.76794 23.9758 2.19984 28.361 3.85056 32.3462C5.50128 36.3314 8.29667 39.7376 11.8832 42.134C15.4698 44.5305 19.6865 45.8096 24 45.8096C28.3135 45.8096 32.5302 44.5305 36.1168 42.134C39.7033 39.7375 42.4987 36.3314 44.1494 32.3462C45.8002 28.361 46.2321 23.9758 45.3905 19.7452C44.549 15.5145 42.4718 11.6284 39.4217 8.57829L24 24L8.57829 8.57829Z" fill="currentColor"></path>
+    </g>
+    <defs>
+    <clipPath id="clip0_6_319"><rect fill="white" height="48" width="48"></rect></clipPath>
+    </defs>
+    </svg>
+    </div>
+    <h2 class="text-white text-xl font-bold tracking-tight">Acme Co</h2>
+    </div>
+    <nav class="flex items-center gap-6">
+    <a class="text-gray-300 hover:text-white text-sm font-medium transition-colors" href="#">Dashboard</a>
+    <a class="text-gray-300 hover:text-white text-sm font-medium transition-colors" href="#">Products</a>
+    <a class="text-white text-sm font-medium transition-colors" href="#">Customers</a>
+    <a class="text-gray-300 hover:text-white text-sm font-medium transition-colors" href="#">Orders</a>
+    <a class="text-gray-300 hover:text-white text-sm font-medium transition-colors" href="#">Analytics</a>
+    </nav>
+    <div class="flex items-center gap-4">
+    <button aria-label="Notifications" class="flex items-center justify-center rounded-full h-10 w-10 bg-[#252525] hover:bg-[#303030] text-gray-300 hover:text-white transition-colors">
+    <svg fill="currentColor" height="20px" viewBox="0 0 256 256" width="20px" xmlns="http://www.w3.org/2000/svg">
+    <path d="M221.8,175.94C216.25,166.38,208,139.33,208,104a80,80,0,1,0-160,0c0,35.34-8.26,62.38-13.81,71.94A16,16,0,0,0,48,200H88.81a40,40,0,0,0,78.38,0H208a16,16,0,0,0,13.8-24.06ZM128,216a24,24,0,0,1-22.62-16h45.24A24,24,0,0,1,128,216ZM48,184c7.7-13.24,16-43.92,16-80a64,64,0,1,1,128,0c0,36.05,8.28,66.73,16,80Z"></path>
+    </svg>
+    </button>
+    <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border-2 border-[var(--accent-color)]" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBzv7Q5fZv5DV1h2SytCTINXxwKtoCBKIn2odQu0CMryNUU7jec_wSZsX_pdYj8DThKQK4B4FVJP0RDSCxm-w9VmiznSKAfCgQ8JULBNHOYlexF8tF8zIjeo0XgXr0Uqaob7G2Fcevie-xoT1uud0E_dppSY90mPvyxrP3a58Mi9cSicc4kgt89aVXjOSCcESsCWgHD8TCeTDjp-M9IYBUDa03S-x0i4XuR39fogBTmt2BaVgZtvN_2m8LxaCFlc2JT7SM0jqGUkQ");'></div>
+    </div>
+    </header>
+    <main class="px-10 lg:px-20 xl:px-40 py-8 flex-1">
+    <div class="max-w-5xl mx-auto space-y-8">
+    <h1 class="text-white text-4xl font-bold tracking-tight">Customer Profile</h1>
+    <section class="glass-card p-6 sm:p-8">
+    <h2 class="text-white text-2xl font-semibold mb-6">Contact Info</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-6">
+    <div>
+    <p class="text-[var(--text-secondary)] text-sm">Name</p>
+    <p class="text-[var(--text-primary)] text-base mt-1">Sophia Clark</p>
+    </div>
+    <div>
+    <p class="text-[var(--text-secondary)] text-sm">Email</p>
+    <p class="text-[var(--text-primary)] text-base mt-1">sophia.clark@email.com</p>
+    </div>
+    <div>
+    <p class="text-[var(--text-secondary)] text-sm">Phone</p>
+    <p class="text-[var(--text-primary)] text-base mt-1">+1 (555) 123-4567</p>
+    </div>
+    <div>
+    <p class="text-[var(--text-secondary)] text-sm">Address</p>
+    <p class="text-[var(--text-primary)] text-base mt-1">123 Elm Street, Anytown, USA</p>
+    </div>
+    </div>
+    </section>
+    <section class="glass-card p-6 sm:p-8">
+    <h2 class="text-white text-2xl font-semibold mb-6">Order History</h2>
+    <div class="overflow-x-auto @container">
+    <table class="w-full min-w-[600px]">
+    <thead>
+    <tr class="border-b border-[var(--border-color)]">
+    <th class="px-4 py-3 text-left text-[var(--text-secondary)] text-xs font-medium uppercase tracking-wider">Order ID</th>
+    <th class="px-4 py-3 text-left text-[var(--text-secondary)] text-xs font-medium uppercase tracking-wider">Date</th>
+    <th class="px-4 py-3 text-left text-[var(--text-secondary)] text-xs font-medium uppercase tracking-wider">Status</th>
+    <th class="px-4 py-3 text-left text-[var(--text-secondary)] text-xs font-medium uppercase tracking-wider">Total</th>
+    </tr>
+    </thead>
+    <tbody class="divide-y divide-[var(--border-color)]">
+    <tr>
+    <td class="px-4 py-4 whitespace-nowrap text-[var(--text-primary)] text-sm">#12345</td>
+    <td class="px-4 py-4 whitespace-nowrap text-[var(--text-secondary)] text-sm">2023-01-15</td>
+    <td class="px-4 py-4 whitespace-nowrap">
+    <span class="status-badge status-shipped">Shipped</span>
+    </td>
+    <td class="px-4 py-4 whitespace-nowrap text-[var(--text-secondary)] text-sm">₹12,500.00</td>
+    </tr>
+    <tr>
+    <td class="px-4 py-4 whitespace-nowrap text-[var(--text-primary)] text-sm">#12346</td>
+    <td class="px-4 py-4 whitespace-nowrap text-[var(--text-secondary)] text-sm">2023-02-20</td>
+    <td class="px-4 py-4 whitespace-nowrap">
+    <span class="status-badge status-delivered">Delivered</span>
+    </td>
+    <td class="px-4 py-4 whitespace-nowrap text-[var(--text-secondary)] text-sm">₹16,700.00</td>
+    </tr>
+    <tr>
+    <td class="px-4 py-4 whitespace-nowrap text-[var(--text-primary)] text-sm">#12347</td>
+    <td class="px-4 py-4 whitespace-nowrap text-[var(--text-secondary)] text-sm">2023-03-25</td>
+    <td class="px-4 py-4 whitespace-nowrap">
+    <span class="status-badge status-cancelled">Cancelled</span>
+    </td>
+    <td class="px-4 py-4 whitespace-nowrap text-[var(--text-secondary)] text-sm">₹4,150.00</td>
+    </tr>
+    </tbody>
+    </table>
+    </div>
+    </section>
+    <section class="glass-card p-6 sm:p-8">
+    <h2 class="text-white text-2xl font-semibold mb-6">Activity Logs</h2>
+    <div class="space-y-6">
+    <div class="flex items-start timeline-item">
+    <div class="flex flex-col items-center mr-4">
+    <div class="flex items-center justify-center size-10 rounded-full bg-[var(--accent-color)] bg-opacity-20 text-[var(--accent-color)]">
+    <svg fill="currentColor" height="20px" viewBox="0 0 256 256" width="20px" xmlns="http://www.w3.org/2000/svg">
+    <path d="M230.92,212c-15.23-26.33-38.7-45.21-66.09-54.16a72,72,0,1,0-73.66,0C63.78,166.78,40.31,185.66,25.08,212a8,8,0,1,0,13.85,8c18.84-32.56,52.14-52,89.07-52s70.23,19.44,89.07,52a8,8,0,1,0,13.85-8ZM72,96a56,56,0,1,1,56,56A56.06,56.06,0,0,1,72,96Z"></path>
+    </svg>
+    </div>
+    <div class="w-px h-8 bg-[var(--border-color)] timeline-line"></div>
+    </div>
+    <div>
+    <p class="text-[var(--text-primary)] text-base font-medium">Account Created</p>
+    <p class="text-[var(--text-secondary)] text-sm">2023-01-15</p>
+    </div>
+    </div>
+    <div class="flex items-start timeline-item">
+    <div class="flex flex-col items-center mr-4">
+    <div class="flex items-center justify-center size-10 rounded-full bg-blue-500 bg-opacity-20 text-blue-400">
+    <svg fill="currentColor" height="20px" viewBox="0 0 256 256" width="20px" xmlns="http://www.w3.org/2000/svg">
+    <path d="M223.68,66.15,135.68,18a15.88,15.88,0,0,0-15.36,0l-88,48.17a16,16,0,0,0-8.32,14v95.64a16,16,0,0,0,8.32,14l88,48.17a15.88,15.88,0,0,0,15.36,0l88-48.17a16,16,0,0,0,8.32-14V80.18A16,16,0,0,0,223.68,66.15ZM128,32l80.34,44-29.77,16.3-80.35-44ZM128,120,47.66,76l33.9-18.56,80.34,44ZM40,90l80,43.78v85.79L40,175.82Zm176,85.78h0l-80,43.79V133.82l32-17.51V152a8,8,0,0,0,16,0V107.55L216,90v85.77Z"></path>
+    </svg>
+    </div>
+    <div class="w-px h-8 bg-[var(--border-color)] timeline-line"></div>
+    </div>
+    <div>
+    <p class="text-[var(--text-primary)] text-base font-medium">Order Placed</p>
+    <p class="text-[var(--text-secondary)] text-sm">2023-01-15</p>
+    </div>
+    </div>
+    <div class="flex items-start timeline-item">
+    <div class="flex flex-col items-center mr-4">
+    <div class="flex items-center justify-center size-10 rounded-full bg-green-500 bg-opacity-20 text-green-400">
+    <svg fill="currentColor" height="20px" viewBox="0 0 256 256" width="20px" xmlns="http://www.w3.org/2000/svg">
+    <path d="M247.42,117l-14-35A15.93,15.93,0,0,0,218.58,72H184V64a8,8,0,0,0-8-8H24A16,16,0,0,0,8,72V184a16,16,0,0,0,16,16H41a32,32,0,0,0,62,0h50a32,32,0,0,0,62,0h17a16,16,0,0,0,16-16V120A7.94,7.94,0,0,0,247.42,117ZM184,88h34.58l9.6,24H184ZM24,72H168v64H24ZM72,208a16,16,0,1,1,16-16A16,16,0,0,1,72,208Zm81-24H103a32,32,0,0,0-62,0H24V152H168v12.31A32.11,32.11,0,0,0,153,184Zm31,24a16,16,0,1,1,16-16A16,16,0,0,1,184,208Zm48-24H215a32.06,32.06,0,0,0-31-24V128h48Z"></path>
+    </svg>
+    </div>
+    </div>
+    <div>
+    <p class="text-[var(--text-primary)] text-base font-medium">Order Shipped</p>
+    <p class="text-[var(--text-secondary)] text-sm">2023-01-16</p>
+    </div>
+    </div>
+    </div>
+    </section>
+    </div>
+    </main>
+    </div>
+    </div>
+    </body></html>

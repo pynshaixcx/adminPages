@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect"/>
+    <link as="style" href="https://fonts.googleapis.com/css2?display=swap&family=Inter%3Awght%40400%3B500%3B600%3B700%3B900&family=Noto+Sans%3Awght%40400%3B500%3B700%3B900" onload="this.rel='stylesheet'" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet"/>
+    <title>ShaiBha Admin - Customers</title>
+    <link href="data:image/x-icon;base64," rel="icon" type="image/x-icon"/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <style type="text/tailwindcss">
+        :root {
+            --background-primary: rgba(20, 20, 20, 0.7);
+            --background-secondary: rgba(48, 48, 48, 0.7);
+            --border-color: rgba(48, 48, 48, 0.9);
+            --text-primary: #ffffff;
+            --text-secondary: #ababab;
+            --text-tertiary: #9ca3af;
+            --blur-intensity: 10px;
+            --sidebar-glow: 0 0 20px 5px rgba(128, 128, 255, 0.2);
+            --accent-primary: #60a5fa;
+        }
+        .frosted-glass {
+            backdrop-filter: blur(var(--blur-intensity));
+            -webkit-backdrop-filter: blur(var(--blur-intensity));
+        }
+        .sidebar-item:hover, .sidebar-item.active {
+            background-color: var(--background-secondary) !important;
+            border-radius: 0.5rem;
+        }
+        .icon-button:hover {
+            background-color: rgba(75, 75, 75, 0.7) !important;
+        }
+        .sidebar-glow-effect {
+            box-shadow: var(--sidebar-glow);
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-black via-slate-900 to-black">
+    <div class="relative flex size-full min-h-screen flex-col bg-cover bg-center bg-fixed" style='font-family: Inter, "Noto Sans", sans-serif;'>
+        <div class="relative flex size-full min-h-screen flex-col dark group/design-root overflow-x-hidden">
+            <div class="layout-container flex h-full grow flex-col">
+                <!-- Header -->
+                <header class="frosted-glass sticky top-0 z-50 flex items-center justify-between whitespace-nowrap border-b border-solid border-[var(--border-color)] bg-[var(--background-primary)] px-6 py-4 md:px-10">
+                    <div class="flex items-center gap-4 text-[var(--text-primary)]">
+                        <h2 class="text-[var(--text-primary)] text-xl font-semibold leading-tight tracking-[-0.015em]">
+                            <span class="font-bold">ShaiBha</span> Admin Panel
+                        </h2>
+                    </div>
+                    <div class="flex items-center gap-3">
+                    </div>
+                </header>
+
+                <div class="flex flex-1">
+                    <!-- Sidebar -->
+                    <aside class="frosted-glass sticky top-[73px] h-[calc(100vh-73px)] w-64 flex-col justify-between border-r border-solid border-[var(--border-color)] bg-[var(--background-primary)] p-4 hidden md:flex sidebar-glow-effect rounded-r-xl">
+                        <nav class="flex flex-col gap-2">
+                            <a class="sidebar-item flex items-center gap-3 px-3 py-2.5 text-[var(--text-primary)] transition-colors duration-200" href="../index.html">
+                                <span class="material-icons-outlined text-xl">dashboard</span>
+                                <p class="text-sm font-medium">Dashboard</p>
+                            </a>
+                            <a class="sidebar-item flex items-center gap-3 px-3 py-2.5 text-[var(--text-primary)] transition-colors duration-200" href="../orders/">
+                                <span class="material-icons-outlined text-xl">list_alt</span>
+                                <p class="text-sm font-medium">Orders</p>
+                            </a>
+                            <a class="sidebar-item flex items-center gap-3 px-3 py-2.5 text-[var(--text-primary)] transition-colors duration-200" href="../products/">
+                                <span class="material-icons-outlined text-xl">inventory_2</span>
+                                <p class="text-sm font-medium">Products</p>
+                            </a>
+                            <a class="sidebar-item flex items-center gap-3 px-3 py-2.5 text-[var(--text-primary)] transition-colors duration-200 active" href="../customers/">
+                                <span class="material-icons-outlined text-xl">group</span>
+                                <p class="text-sm font-medium">Customers</p>
+                            </a>
+                            <a class="sidebar-item flex items-center gap-3 px-3 py-2.5 text-[var(--text-primary)] transition-colors duration-200" href="../reports/">
+                                <span class="material-icons-outlined text-xl">bar_chart</span>
+                                <p class="text-sm font-medium">Reports</p>
+                            </a>
+                        </nav>
+                        <div class="flex flex-col gap-1 pt-4 border-t border-[var(--border-color)] mt-auto">
+                            <a class="sidebar-item flex items-center gap-3 px-3 py-2.5 text-[var(--text-primary)] transition-colors duration-200" href="#">
+                                <span class="material-icons-outlined text-xl">logout</span>
+                                <p class="text-sm font-medium">Logout</p>
+                            </a>
+                        </div>
+                    </aside>
+
+                    <!-- Main Content -->
+                    <main class="flex-1 p-6 md:p-10 overflow-y-auto">
+                        <div class="flex flex-wrap justify-between items-center gap-4 p-4">
+                            <h1 class="text-[var(--text-primary)] tracking-tight text-3xl sm:text-4xl font-bold">All Customers</h1>
+                            <div class="flex gap-2">
+                                <select class="form-select rounded-lg border-none bg-[var(--background-tertiary)] text-[var(--text-secondary)] text-sm focus:ring-2 focus:ring-[var(--accent-primary)] focus:border-[var(--accent-primary)]">
+                                    <option value="">Filter by Status</option>
+                                    <option value="active">Active</option>
+                                    <option value="inactive">Inactive</option>
+                                    <option value="pending">Pending</option>
+                                </select>
+                                <input class="form-input rounded-lg border-none bg-[var(--background-tertiary)] text-[var(--text-secondary)] text-sm focus:ring-2 focus:ring-[var(--accent-primary)] focus:border-[var(--accent-primary)]" type="date"/>
+                            </div>
+                        </div>
+                        <div class="px-4 py-3">
+                            <label class="flex flex-col min-w-40 h-12 w-full">
+                                <div class="text-[var(--text-tertiary)] flex items-center justify-center pl-4" data-icon="MagnifyingGlass" data-size="24px" data-weight="regular">
+                                    <svg fill="currentColor" height="20px" viewBox="0 0 256 256" width="20px" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"></path>
+                                    </svg>
+                                </div>
+                                <input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-r-xl text-[var(--text-primary)] focus:outline-none focus:ring-0 border-none bg-transparent h-full placeholder:text-[var(--text-tertiary)] px-4 text-sm font-normal leading-normal" placeholder="Search customers by name, email..." value=""/>
+                            </label>
+                        </div>
+                        <div class="px-4 py-3 @container">
+                            <div class="hidden @[640px]:block overflow-hidden rounded-xl border border-[var(--border-primary)] frosted-glass">
+                                <table class="w-full text-sm">
+                                    <thead>
+                                        <tr class="bg-[var(--background-secondary)] bg-opacity-50">
+                                            <th class="px-4 py-3 text-left text-[var(--text-secondary)] font-semibold">Name</th>
+                                            <th class="px-4 py-3 text-left text-[var(--text-secondary)] font-semibold">Email</th>
+                                            <th class="px-4 py-3 text-left text-[var(--text-secondary)] font-semibold">Join Date</th>
+                                            <th class="px-4 py-3 text-left text-[var(--text-secondary)] font-semibold">Orders</th>
+                                            <th class="px-4 py-3 text-left text-[var(--text-secondary)] font-semibold">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="divide-y divide-[var(--border-primary)]">
+                                        <tr class="hover:bg-[var(--background-tertiary)] hover:bg-opacity-30 transition-colors">
+                                            <td class="px-4 py-3 text-[var(--text-primary)]">Sophia Bennett</td>
+                                            <td class="px-4 py-3 text-[var(--text-tertiary)]">sophia.bennett@email.com</td>
+                                            <td class="px-4 py-3 text-[var(--text-tertiary)]">2022-03-15</td>
+                                            <td class="px-4 py-3 text-[var(--text-tertiary)] text-center">5</td>
+                                            <td class="px-4 py-3 text-[var(--text-tertiary)]">
+                                                <button class="text-[var(--accent-primary)] hover:underline text-xs">View</button>
+                                            </td>
+                                        </tr>
+                                        <tr class="hover:bg-[var(--background-tertiary)] hover:bg-opacity-30 transition-colors">
+                                            <td class="px-4 py-3 text-[var(--text-primary)]">Liam Carter</td>
+                                            <td class="px-4 py-3 text-[var(--text-tertiary)]">liam.carter@email.com</td>
+                                            <td class="px-4 py-3 text-[var(--text-tertiary)]">2022-05-20</td>
+                                            <td class="px-4 py-3 text-[var(--text-tertiary)] text-center">3</td>
+                                            <td class="px-4 py-3 text-[var(--text-tertiary)]">
+                                                <button class="text-[var(--accent-primary)] hover:underline text-xs">View</button>
+                                            </td>
+                                        </tr>
+                                        <tr class="hover:bg-[var(--background-tertiary)] hover:bg-opacity-30 transition-colors">
+                                            <td class="px-4 py-3 text-[var(--text-primary)]">Olivia Davis</td>
+                                            <td class="px-4 py-3 text-[var(--text-tertiary)]">olivia.davis@email.com</td>
+                                            <td class="px-4 py-3 text-[var(--text-tertiary)]">2022-07-10</td>
+                                            <td class="px-4 py-3 text-[var(--text-tertiary)] text-center">7</td>
+                                            <td class="px-4 py-3 text-[var(--text-tertiary)]">
+                                                <button class="text-[var(--accent-primary)] hover:underline text-xs">View</button>
+                                            </td>
+                                        </tr>
+                                        <tr class="hover:bg-[var(--background-tertiary)] hover:bg-opacity-30 transition-colors">
+                                            <td class="px-4 py-3 text-[var(--text-primary)]">Noah Evans</td>
+                                            <td class="px-4 py-3 text-[var(--text-tertiary)]">noah.evans@email.com</td>
+                                            <td class="px-4 py-3 text-[var(--text-tertiary)]">2022-09-05</td>
+                                            <td class="px-4 py-3 text-[var(--text-tertiary)] text-center">2</td>
+                                            <td class="px-4 py-3 text-[var(--text-tertiary)]">
+                                                <button class="text-[var(--accent-primary)] hover:underline text-xs">View</button>
+                                            </td>
+                                        </tr>
+                                        <tr class="hover:bg-[var(--background-tertiary)] hover:bg-opacity-30 transition-colors">
+                                            <td class="px-4 py-3 text-[var(--text-primary)]">Ava Foster</td>
+                                            <td class="px-4 py-3 text-[var(--text-tertiary)]">ava.foster@email.com</td>
+                                            <td class="px-4 py-3 text-[var(--text-tertiary)]">2022-11-12</td>
+                                            <td class="px-4 py-3 text-[var(--text-tertiary)] text-center">6</td>
+                                            <td class="px-4 py-3 text-[var(--text-tertiary)]">
+                                                <button class="text-[var(--accent-primary)] hover:underline text-xs">View</button>
+                                            </td>
+                                        </tr>
+                                        <tr class="hover:bg-[var(--background-tertiary)] hover:bg-opacity-30 transition-colors">
+                                            <td class="px-4 py-3 text-[var(--text-primary)]">Ethan Green</td>
+                                            <td class="px-4 py-3 text-[var(--text-tertiary)]">ethan.green@email.com</td>
+                                            <td class="px-4 py-3 text-[var(--text-tertiary)]">2023-01-20</td>
+                                            <td class="px-4 py-3 text-[var(--text-tertiary)] text-center">4</td>
+                                            <td class="px-4 py-3 text-[var(--text-tertiary)]">
+                                                <button class="text-[var(--accent-primary)] hover:underline text-xs">View</button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="grid grid-cols-1 @[480px]:grid-cols-2 gap-4 @[640px]:hidden">
+                                <div class="rounded-xl border border-[var(--border-primary)] p-4 frosted-glass space-y-2">
+                                    <div class="flex justify-between items-start">
+                                        <h3 class="text-lg font-semibold text-[var(--text-primary)]">Sophia Bennett</h3>
+                                        <button class="text-[var(--accent-primary)] hover:underline text-xs mt-1">View Details</button>
+                                    </div>
+                                    <p class="text-sm text-[var(--text-tertiary)]">sophia.bennett@email.com</p>
+                                    <div class="flex justify-between text-xs text-[var(--text-tertiary)] pt-1">
+                                        <span>Joined: <span class="text-[var(--text-secondary)]">2022-03-15</span></span>
+                                        <span>Orders: <span class="text-[var(--text-secondary)]">5</span></span>
+                                    </div>
+                                </div>
+                                <div class="rounded-xl border border-[var(--border-primary)] p-4 frosted-glass space-y-2">
+                                    <div class="flex justify-between items-start">
+                                        <h3 class="text-lg font-semibold text-[var(--text-primary)]">Liam Carter</h3>
+                                        <button class="text-[var(--accent-primary)] hover:underline text-xs mt-1">View Details</button>
+                                    </div>
+                                    <p class="text-sm text-[var(--text-tertiary)]">liam.carter@email.com</p>
+                                    <div class="flex justify-between text-xs text-[var(--text-tertiary)] pt-1">
+                                        <span>Joined: <span class="text-[var(--text-secondary)]">2022-05-20</span></span>
+                                        <span>Orders: <span class="text-[var(--text-secondary)]">3</span></span>
+                                    </div>
+                                </div>
+                                <div class="rounded-xl border border-[var(--border-primary)] p-4 frosted-glass space-y-2">
+                                    <div class="flex justify-between items-start">
+                                        <h3 class="text-lg font-semibold text-[var(--text-primary)]">Olivia Davis</h3>
+                                        <button class="text-[var(--accent-primary)] hover:underline text-xs mt-1">View Details</button>
+                                    </div>
+                                    <p class="text-sm text-[var(--text-tertiary)]">olivia.davis@email.com</p>
+                                    <div class="flex justify-between text-xs text-[var(--text-tertiary)] pt-1">
+                                        <span>Joined: <span class="text-[var(--text-secondary)]">2022-07-10</span></span>
+                                        <span>Orders: <span class="text-[var(--text-secondary)]">7</span></span>
+                                    </div>
+                                </div>
+                                <div class="rounded-xl border border-[var(--border-primary)] p-4 frosted-glass space-y-2">
+                                    <div class="flex justify-between items-start">
+                                        <h3 class="text-lg font-semibold text-[var(--text-primary)]">Noah Evans</h3>
+                                        <button class="text-[var(--accent-primary)] hover:underline text-xs mt-1">View Details</button>
+                                    </div>
+                                    <p class="text-sm text-[var(--text-tertiary)]">noah.evans@email.com</p>
+                                    <div class="flex justify-between text-xs text-[var(--text-tertiary)] pt-1">
+                                        <span>Joined: <span class="text-[var(--text-secondary)]">2022-09-05</span></span>
+                                        <span>Orders: <span class="text-[var(--text-secondary)]">2</span></span>
+                                    </div>
+                                </div>
+                                <div class="rounded-xl border border-[var(--border-primary)] p-4 frosted-glass space-y-2">
+                                    <div class="flex justify-between items-start">
+                                        <h3 class="text-lg font-semibold text-[var(--text-primary)]">Ava Foster</h3>
+                                        <button class="text-[var(--accent-primary)] hover:underline text-xs mt-1">View Details</button>
+                                    </div>
+                                    <p class="text-sm text-[var(--text-tertiary)]">ava.foster@email.com</p>
+                                    <div class="flex justify-between text-xs text-[var(--text-tertiary)] pt-1">
+                                        <span>Joined: <span class="text-[var(--text-secondary)]">2022-11-12</span></span>
+                                        <span>Orders: <span class="text-[var(--text-secondary)]">6</span></span>
+                                    </div>
+                                </div>
+                                <div class="rounded-xl border border-[var(--border-primary)] p-4 frosted-glass space-y-2">
+                                    <div class="flex justify-between items-start">
+                                        <h3 class="text-lg font-semibold text-[var(--text-primary)]">Ethan Green</h3>
+                                        <button class="text-[var(--accent-primary)] hover:underline text-xs mt-1">View Details</button>
+                                    </div>
+                                    <p class="text-sm text-[var(--text-tertiary)]">ethan.green@email.com</p>
+                                    <div class="flex justify-between text-xs text-[var(--text-tertiary)] pt-1">
+                                        <span>Joined: <span class="text-[var(--text-secondary)]">2023-01-20</span></span>
+                                        <span>Orders: <span class="text-[var(--text-secondary)]">4</span></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </main>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

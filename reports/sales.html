@@ -1,0 +1,442 @@
+<html><head>
+    <meta charset="utf-8"/>
+    <link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect"/>
+    <link as="style" href="https://fonts.googleapis.com/css2?display=swap&amp;family=Noto+Sans%3Awght%40400%3B500%3B700%3B900&amp;family=Plus+Jakarta+Sans%3Awght%40400%3B500%3B700%3B800" onload="this.rel='stylesheet'" rel="stylesheet"/>
+    <title>Sales Reports - Admin Panel</title>
+    <link href="data:image/x-icon;base64," rel="icon" type="image/x-icon"/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Icons+Outlined" rel="stylesheet"/>
+    <style type="text/tailwindcss">
+            :root {
+                --background-color: #111111;
+                --text-color: #ffffff;
+                --muted-text-color: #a0a0a0;
+                --card-background-color: rgba(38, 38, 38, 0.6);
+                --card-border-color: rgba(54, 54, 54, 0.8);
+                --accent-color: #ffffff;
+                --primary-color: #007AFF;
+                --positive-color: #34C759;
+                --border-color: #363636;
+                --chart-bar-color: #4A4A4A;
+                --chart-bar-hover-color: #6A6A6A;
+                --button-active-bg: #ffffff;
+                --button-active-text: #111111;
+                --button-inactive-bg: rgba(54, 54, 54, 0.5);
+                --button-inactive-text: #a0a0a0;
+                --button-hover-bg: rgba(74, 74, 74, 0.7);
+            }
+            .frosted-glass {
+                background-color: var(--card-background-color);
+                backdrop-filter: blur(12px);
+                -webkit-backdrop-filter: blur(12px);
+                border: 1px solid var(--card-border-color);
+                border-radius: 0.75rem;
+                box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+            }
+            .chart-text {
+                fill: var(--muted-text-color);
+                font-size: 12px;
+                font-weight: 500;
+            }
+            .active-nav-link {
+                color: var(--accent-color);
+                position: relative;
+            }
+            .active-nav-link::after {
+                content: '';
+                position: absolute;
+                left: 0;
+                bottom: -4px;
+                width: 100%;
+                height: 2px;
+                background-color: var(--accent-color);
+            }
+            .tooltip {
+                position: absolute;
+                background-color: rgba(17, 17, 17, 0.8);
+                color: var(--text-color);
+                padding: 8px 12px;
+                border-radius: 6px;
+                font-size: 13px;
+                font-weight: 500;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+                opacity: 0;
+                transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
+                pointer-events: none;
+                transform: translate(-50%, -110%);white-space: nowrap;
+                border: 1px solid rgba(54, 54, 54, 0.7);
+                backdrop-filter: blur(4px);
+                -webkit-backdrop-filter: blur(4px);
+                z-index: 10;
+            }
+            .grid-line {
+                stroke: var(--border-color);
+                stroke-width: 0.5;
+                stroke-dasharray: 3 3;
+            }
+            .chart-bar {
+                fill: var(--chart-bar-color);
+                transition: fill 0.2s ease-in-out;
+                cursor: pointer;
+            }
+            .chart-bar:hover {
+                fill: var(--chart-bar-hover-color);
+            }
+            .chart-bar-group:hover .tooltip {
+                opacity: 1;
+                transform: translate(-50%, -130%);
+            }
+            .time-filter-button {
+              padding: 6px 12px;
+              border-radius: 6px;
+              font-size: 13px;
+              font-weight: 500;
+              transition: background-color 0.2s, color 0.2s;
+            }
+            .time-filter-button.active {
+              background-color: var(--button-active-bg);
+              color: var(--button-active-text);
+            }
+            .time-filter-button.inactive {
+              background-color: var(--button-inactive-bg);
+              color: var(--button-inactive-text);
+            }
+            .time-filter-button:hover:not(.active) {
+              background-color: var(--button-hover-bg);
+            }
+        </style>
+    </head>
+    <body class="bg-[var(--background-color)] text-[var(--text-color)]" style='font-family: "Plus Jakarta Sans", "Noto Sans", sans-serif;'>
+    <div class="relative flex size-full min-h-screen flex-col group/design-root overflow-x-hidden">
+    <div class="layout-container flex h-full grow flex-col">
+    <header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-[var(--border-color)] px-6 md:px-10 py-4">
+    <div class="flex items-center gap-4">
+    <div class="size-6 text-[var(--primary-color)]">
+    <svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+    <g clip-path="url(#clip0_6_319)">
+    <path d="M8.57829 8.57829C5.52816 11.6284 3.451 15.5145 2.60947 19.7452C1.76794 23.9758 2.19984 28.361 3.85056 32.3462C5.50128 36.3314 8.29667 39.7376 11.8832 42.134C15.4698 44.5305 19.6865 45.8096 24 45.8096C28.3135 45.8096 32.5302 44.5305 36.1168 42.134C39.7033 39.7375 42.4987 36.3314 44.1494 32.3462C45.8002 28.361 46.2321 23.9758 45.3905 19.7452C44.549 15.5145 42.4718 11.6284 39.4217 8.57829L24 24L8.57829 8.57829Z" fill="currentColor"></path>
+    </g>
+    <defs>
+    <clipPath id="clip0_6_319">
+    <rect fill="white" height="48" width="48"></rect>
+    </clipPath>
+    </defs>
+    </svg>
+    </div>
+    <h2 class="text-[var(--text-color)] text-xl font-bold leading-tight tracking-[-0.015em]">Acme Co</h2>
+    </div>
+    <nav class="hidden md:flex items-center gap-8">
+    <a class="text-[var(--muted-text-color)] hover:text-[var(--text-color)] text-sm font-medium leading-normal transition-colors" href="#">Dashboard</a>
+    <a class="text-[var(--muted-text-color)] hover:text-[var(--text-color)] text-sm font-medium leading-normal transition-colors" href="#">Products</a>
+    <a class="text-[var(--muted-text-color)] hover:text-[var(--text-color)] text-sm font-medium leading-normal transition-colors" href="#">Customers</a>
+    <a class="text-[var(--muted-text-color)] hover:text-[var(--text-color)] text-sm font-medium leading-normal transition-colors" href="#">Orders</a>
+    <a class="active-nav-link text-sm font-medium leading-normal" href="#">Analytics</a>
+    </nav>
+    <div class="flex items-center gap-4">
+    <button aria-label="Notifications" class="flex items-center justify-center rounded-full h-10 w-10 bg-[var(--card-background-color)] text-[var(--text-color)] hover:bg-[var(--border-color)] transition-colors">
+    <span class="material-icons-outlined" style="font-size: 20px;">notifications</span>
+    </button>
+    <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border-2 border-[var(--border-color)]" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCXyIquH6ddZchvaDV52bYfjGSLzu5H-_7SP3gab7i50PtIF5nRok9FAf7VhETw7-LxsOunAyg8rG62_IlTsWmzxTTVh8eI13ArkbheDNYv1ejj8Q2-SQDKMnJw1fMQ780xOs0Hmv2tzZ0HFNiFL8KKpDQxBma1ooZWdLgxgHWl1XVKB1xmJapk-7IUqZxU2xhTfbYITBfUNIvmoVGf2W0wpN-yucsKy8EgvYrX2DNsAecol5Y0FwbjwFxJD6lyKVrObBnAoQ2u7A");'></div>
+    </div>
+    </header>
+    <main class="px-4 md:px-10 lg:px-20 xl:px-40 flex flex-1 justify-center py-8">
+    <div class="layout-content-container flex flex-col w-full max-w-6xl flex-1">
+    <div class="flex flex-wrap justify-between items-center gap-4 mb-6">
+    <h1 class="text-[var(--text-color)] tracking-tight text-3xl md:text-4xl font-bold leading-tight">Sales Reports</h1>
+    </div>
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+    <div class="frosted-glass p-6 flex flex-col gap-4 col-span-1 lg:col-span-2">
+    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+    <div>
+    <p class="text-[var(--text-color)] text-lg font-semibold leading-normal">Revenue Over Time</p>
+    <p class="text-[var(--muted-text-color)] text-sm font-normal leading-normal" id="revenue-period-display">Last 1 Month</p>
+    </div>
+    <div class="flex items-center gap-2">
+    <button class="time-filter-button active" data-period="1M">1M</button>
+    <button class="time-filter-button inactive" data-period="6M">6M</button>
+    <button class="time-filter-button inactive" data-period="1Y">1Y</button>
+    </div>
+    <div class="text-left sm:text-right">
+    <p class="text-[var(--text-color)] tracking-tight text-3xl font-bold leading-tight" id="total-revenue-display">₹10,000,000.00</p>
+    <p class="text-[var(--positive-color)] text-sm font-medium leading-normal" id="revenue-comparison-display">+15% vs previous period</p>
+    </div>
+    </div>
+    <div class="flex min-h-[300px] md:min-h-[350px] flex-1 flex-col gap-6 pt-4 overflow-x-auto">
+    <div class="w-full min-w-[800px]"> <svg fill="none" height="100%" preserveAspectRatio="xMidYMid meet" viewBox="0 0 944 180" width="100%" xmlns="http://www.w3.org/2000/svg">
+    <g class="grid-lines">
+    <line class="grid-line" x1="0" x2="944" y1="0" y2="0"></line>
+    <line class="grid-line" x1="0" x2="944" y1="45" y2="45"></line>
+    <line class="grid-line" x1="0" x2="944" y1="90" y2="90"></line>
+    <line class="grid-line" x1="0" x2="944" y1="135" y2="135"></line>
+    <line class="grid-line" x1="0" x2="944" y1="180" y2="180"></line>
+    </g>
+    <g class="chart-bars">
+    <g class="chart-bar-group">
+    <rect class="chart-bar" height="109" rx="2" width="10" x="5" y="71"></rect>
+    <text class="tooltip" x="10" y="71">₹8,000,000 (Jan 1)</text>
+    </g>
+    <g class="chart-bar-group">
+    <rect class="chart-bar" height="21" rx="2" width="10" x="21" y="159"></rect>
+    <text class="tooltip" x="26" y="159">₹1,500,000 (Jan 2)</text>
+    </g>
+    <g class="chart-bar-group">
+    <rect class="chart-bar" height="41" rx="2" width="10" x="37" y="139"></rect>
+    <text class="tooltip" x="42" y="139">₹3,000,000 (Jan 3)</text>
+    </g>
+    <g class="chart-bar-group">
+    <rect class="chart-bar" height="93" rx="2" width="10" x="53" y="87"></rect>
+    <text class="tooltip" x="58" y="87">₹7,000,000 (Jan 4)</text>
+    </g>
+    <g class="chart-bar-group">
+    <rect class="chart-bar" height="33" rx="2" width="10" x="69" y="147"></rect>
+    <text class="tooltip" x="74" y="147">₹2,500,000 (Jan 5)</text>
+    </g>
+    <g class="chart-bar-group">
+    <rect class="chart-bar" height="101" rx="2" width="10" x="85" y="79"></rect>
+    <text class="tooltip" x="90" y="79">₹7,500,000 (Jan 6)</text>
+    </g>
+    <g class="chart-bar-group">
+    <rect class="chart-bar" height="61" rx="2" width="10" x="101" y="119"></rect>
+    <text class="tooltip" x="106" y="119">₹4,500,000 (Jan 7)</text>
+    </g>
+    <g class="chart-bar-group">
+    <rect class="chart-bar" height="45" rx="2" width="10" x="117" y="135"></rect>
+    <text class="tooltip" x="122" y="135">₹3,500,000 (Jan 8)</text>
+    </g>
+    <g class="chart-bar-group">
+    <rect class="chart-bar" height="121" rx="2" width="10" x="133" y="59"></rect>
+    <text class="tooltip" x="138" y="59">₹9,000,000 (Jan 9)</text>
+    </g>
+    <g class="chart-bar-group">
+    <rect class="chart-bar" height="149" rx="2" width="10" x="149" y="31"></rect>
+    <text class="tooltip" x="154" y="31">₹11,000,000 (Jan 10)</text>
+    </g>
+    <g class="chart-bar-group">
+    <rect class="chart-bar" height="1" rx="2" width="10" x="165" y="179"></rect>
+    <text class="tooltip" x="170" y="179">₹100,000 (Jan 11)</text>
+    </g>
+    <g class="chart-bar-group">
+    <rect class="chart-bar" height="81" rx="2" width="10" x="181" y="99"></rect>
+    <text class="tooltip" x="186" y="99">₹6,000,000 (Jan 12)</text>
+    </g>
+    <g class="chart-bar-group">
+    <rect class="chart-bar" height="129" rx="2" width="10" x="197" y="51"></rect>
+    <text class="tooltip" x="202" y="51">₹9,500,000 (Jan 13)</text>
+    </g>
+    <g class="chart-bar-group">
+    <rect class="chart-bar" height="25" rx="2" width="10" x="213" y="155"></rect>
+    <text class="tooltip" x="218" y="155">₹2,000,000 (Jan 14)</text>
+    </g>
+    <g class="chart-bar-group">
+    <rect class="chart-bar" height="109" rx="2" width="10" x="229" y="71"></rect>
+    <text class="tooltip" x="234" y="71">₹8,000,000 (Jan 15)</text>
+    </g>
+    <g class="chart-bar-group">
+    <rect class="chart-bar" height="21" rx="2" width="10" x="245" y="159"></rect>
+    <text class="tooltip" x="250" y="159">₹1,500,000 (Jan 16)</text>
+    </g>
+    <g class="chart-bar-group">
+    <rect class="chart-bar" height="41" rx="2" width="10" x="261" y="139"></rect>
+    <text class="tooltip" x="266" y="139">₹3,000,000 (Jan 17)</text>
+    </g>
+    <g class="chart-bar-group">
+    <rect class="chart-bar" height="93" rx="2" width="10" x="277" y="87"></rect>
+    <text class="tooltip" x="282" y="87">₹7,000,000 (Jan 18)</text>
+    </g>
+    <g class="chart-bar-group">
+    <rect class="chart-bar" height="33" rx="2" width="10" x="293" y="147"></rect>
+    <text class="tooltip" x="298" y="147">₹2,500,000 (Jan 19)</text>
+    </g>
+    <g class="chart-bar-group">
+    <rect class="chart-bar" height="101" rx="2" width="10" x="309" y="79"></rect>
+    <text class="tooltip" x="314" y="79">₹7,500,000 (Jan 20)</text>
+    </g>
+    <g class="chart-bar-group">
+    <rect class="chart-bar" height="61" rx="2" width="10" x="325" y="119"></rect>
+    <text class="tooltip" x="330" y="119">₹4,500,000 (Jan 21)</text>
+    </g>
+    <g class="chart-bar-group">
+    <rect class="chart-bar" height="45" rx="2" width="10" x="341" y="135"></rect>
+    <text class="tooltip" x="346" y="135">₹3,500,000 (Jan 22)</text>
+    </g>
+    <g class="chart-bar-group">
+    <rect class="chart-bar" height="121" rx="2" width="10" x="357" y="59"></rect>
+    <text class="tooltip" x="362" y="59">₹9,000,000 (Jan 23)</text>
+    </g>
+    <g class="chart-bar-group">
+    <rect class="chart-bar" height="149" rx="2" width="10" x="373" y="31"></rect>
+    <text class="tooltip" x="378" y="31">₹11,000,000 (Jan 24)</text>
+    </g>
+    <g class="chart-bar-group">
+    <rect class="chart-bar" height="1" rx="2" width="10" x="389" y="179"></rect>
+    <text class="tooltip" x="394" y="179">₹100,000 (Jan 25)</text>
+    </g>
+    <g class="chart-bar-group">
+    <rect class="chart-bar" height="81" rx="2" width="10" x="405" y="99"></rect>
+    <text class="tooltip" x="410" y="99">₹6,000,000 (Jan 26)</text>
+    </g>
+    <g class="chart-bar-group">
+    <rect class="chart-bar" height="60" rx="2" width="10" x="421" y="120"></rect>
+    <text class="tooltip" x="426" y="120">₹5,000,000 (Jan 27)</text>
+    </g>
+    <g class="chart-bar-group">
+    <rect class="chart-bar" height="90" rx="2" width="10" x="437" y="90"></rect>
+    <text class="tooltip" x="442" y="90">₹7,000,000 (Jan 28)</text>
+    </g>
+    <g class="chart-bar-group">
+    <rect class="chart-bar" height="120" rx="2" width="10" x="453" y="60"></rect>
+    <text class="tooltip" x="458" y="60">₹10,000,000 (Jan 29)</text>
+    </g>
+    <g class="chart-bar-group">
+    <rect class="chart-bar" height="30" rx="2" width="10" x="469" y="150"></rect>
+    <text class="tooltip" x="474" y="150">₹2,500,000 (Jan 30)</text>
+    </g>
+    <g class="chart-bar-group">
+    <rect class="chart-bar" height="100" rx="2" width="10" x="485" y="80"></rect>
+    <text class="tooltip" x="490" y="80">₹7,500,000 (Feb 1)</text>
+    </g>
+    <g class="chart-bar-group">
+    <rect class="chart-bar" height="130" rx="2" width="10" x="501" y="50"></rect>
+    <text class="tooltip" x="506" y="50">₹9,800,000 (Feb 2)</text>
+    </g>
+    <g class="chart-bar-group">
+    <rect class="chart-bar" height="70" rx="2" width="10" x="517" y="110"></rect>
+    <text class="tooltip" x="522" y="110">₹5,000,000 (Feb 3)</text>
+    </g>
+    <g class="chart-bar-group">
+    <rect class="chart-bar" height="50" rx="2" width="10" x="533" y="130"></rect>
+    <text class="tooltip" x="538" y="130">₹3,800,000 (Feb 4)</text>
+    </g>
+    <g class="chart-bar-group">
+    <rect class="chart-bar" height="115" rx="2" width="10" x="549" y="65"></rect>
+    <text class="tooltip" x="554" y="65">₹8,500,000 (Feb 5)</text>
+    </g>
+    <g class="chart-bar-group">
+    <rect class="chart-bar" height="95" rx="2" width="10" x="565" y="85"></rect>
+    <text class="tooltip" x="570" y="85">₹7,200,000 (Feb 6)</text>
+    </g>
+    <g class="chart-bar-group">
+    <rect class="chart-bar" height="140" rx="2" width="10" x="581" y="40"></rect>
+    <text class="tooltip" x="586" y="40">₹10,500,000 (Feb 7)</text>
+    </g>
+    <g class="chart-bar-group">
+    <rect class="chart-bar" height="80" rx="2" width="10" x="597" y="100"></rect>
+    <text class="tooltip" x="602" y="100">₹6,000,000 (Feb 8)</text>
+    </g>
+    <g class="chart-bar-group">
+    <rect class="chart-bar" height="65" rx="2" width="10" x="613" y="115"></rect>
+    <text class="tooltip" x="618" y="115">₹4,800,000 (Feb 9)</text>
+    </g>
+    <g class="chart-bar-group">
+    <rect class="chart-bar" height="105" rx="2" width="10" x="629" y="75"></rect>
+    <text class="tooltip" x="634" y="75">₹7,800,000 (Feb 10)</text>
+    </g>
+    <g class="chart-bar-group">
+    <rect class="chart-bar" height="20" rx="2" width="10" x="645" y="160"></rect>
+    <text class="tooltip" x="650" y="160">₹1,200,000 (Feb 11)</text>
+    </g>
+    <g class="chart-bar-group">
+    <rect class="chart-bar" height="88" rx="2" width="10" x="661" y="92"></rect>
+    <text class="tooltip" x="666" y="92">₹6,500,000 (Feb 12)</text>
+    </g>
+    <g class="chart-bar-group">
+    <rect class="chart-bar" height="125" rx="2" width="10" x="677" y="55"></rect>
+    <text class="tooltip" x="682" y="55">₹9,200,000 (Feb 13)</text>
+    </g>
+    <g class="chart-bar-group">
+    <rect class="chart-bar" height="35" rx="2" width="10" x="693" y="145"></rect>
+    <text class="tooltip" x="698" y="145">₹2,800,000 (Feb 14)</text>
+    </g>
+    <g class="chart-bar-group">
+    <rect class="chart-bar" height="112" rx="2" width="10" x="709" y="68"></rect>
+    <text class="tooltip" x="714" y="68">₹8,200,000 (Feb 15)</text>
+    </g>
+    <g class="chart-bar-group">
+    <rect class="chart-bar" height="18" rx="2" width="10" x="725" y="162"></rect>
+    <text class="tooltip" x="730" y="162">₹1,000,000 (Feb 16)</text>
+    </g>
+    <g class="chart-bar-group">
+    <rect class="chart-bar" height="48" rx="2" width="10" x="741" y="132"></rect>
+    <text class="tooltip" x="746" y="132">₹3,200,000 (Feb 17)</text>
+    </g>
+    <g class="chart-bar-group">
+    <rect class="chart-bar" height="98" rx="2" width="10" x="757" y="82"></rect>
+    <text class="tooltip" x="762" y="82">₹7,000,000 (Feb 18)</text>
+    </g>
+    <g class="chart-bar-group">
+    <rect class="chart-bar" height="28" rx="2" width="10" x="773" y="152"></rect>
+    <text class="tooltip" x="778" y="152">₹2,000,000 (Feb 19)</text>
+    </g>
+    <g class="chart-bar-group">
+    <rect class="chart-bar" height="108" rx="2" width="10" x="789" y="72"></rect>
+    <text class="tooltip" x="794" y="72">₹7,800,000 (Feb 20)</text>
+    </g>
+    <g class="chart-bar-group">
+    <rect class="chart-bar" height="58" rx="2" width="10" x="805" y="122"></rect>
+    <text class="tooltip" x="810" y="122">₹4,200,000 (Feb 21)</text>
+    </g>
+    <g class="chart-bar-group">
+    <rect class="chart-bar" height="40" rx="2" width="10" x="821" y="140"></rect>
+    <text class="tooltip" x="826" y="140">₹3,000,000 (Feb 22)</text>
+    </g>
+    <g class="chart-bar-group">
+    <rect class="chart-bar" height="128" rx="2" width="10" x="837" y="52"></rect>
+    <text class="tooltip" x="842" y="52">₹9,500,000 (Feb 23)</text>
+    </g>
+    <g class="chart-bar-group">
+    <rect class="chart-bar" height="152" rx="2" width="10" x="853" y="28"></rect>
+    <text class="tooltip" x="858" y="28">₹11,500,000 (Feb 24)</text>
+    </g>
+    <g class="chart-bar-group">
+    <rect class="chart-bar" height="5" rx="2" width="10" x="869" y="175"></rect>
+    <text class="tooltip" x="874" y="175">₹500,000 (Feb 25)</text>
+    </g>
+    <g class="chart-bar-group">
+    <rect class="chart-bar" height="78" rx="2" width="10" x="885" y="102"></rect>
+    <text class="tooltip" x="890" y="102">₹5,800,000 (Feb 26)</text>
+    </g>
+    <g class="chart-bar-group">
+    <rect class="chart-bar" height="68" rx="2" width="10" x="901" y="112"></rect>
+    <text class="tooltip" x="906" y="112">₹4,800,000 (Feb 27)</text>
+    </g>
+    <g class="chart-bar-group">
+    <rect class="chart-bar" height="85" rx="2" width="10" x="917" y="95"></rect>
+    <text class="tooltip" x="922" y="95">₹6,200,000 (Feb 28)</text>
+    </g>
+    <g class="chart-bar-group">
+    <rect class="chart-bar" height="118" rx="2" width="10" x="933" y="62"></rect>
+    <text class="tooltip" x="938" y="62">₹8,800,000 (Feb 29)</text>
+    </g>
+    </g>
+    <g class="chart-text" transform="translate(0, 195)">
+    <text text-anchor="start" x="0">Jan 1</text>
+    <text text-anchor="middle" x="156.33">Jan 11</text>
+    <text text-anchor="middle" x="312.66">Jan 21</text>
+    <text text-anchor="middle" x="469">Feb 1</text>
+    <text text-anchor="middle" x="625.33">Feb 11</text>
+    <text text-anchor="middle" x="781.66">Feb 21</text>
+    <text text-anchor="end" x="944">Feb 29</text>
+    </g>
+    </svg>
+    </div>
+    </div>
+    </div>
+    <div class="frosted-glass p-6 flex flex-col gap-2">
+    <p class="text-[var(--text-color)] text-lg font-semibold leading-normal">Total Revenue</p>
+    <p class="text-[var(--text-color)] tracking-tight text-4xl font-bold leading-tight">₹104,195,062.50</p>
+    <p class="text-[var(--muted-text-color)] text-sm font-normal leading-normal">All time</p>
+    </div>
+    <div class="frosted-glass p-6 flex flex-col gap-2">
+    <p class="text-[var(--text-color)] text-lg font-semibold leading-normal">Avg. Orders per Day</p>
+    <p class="text-[var(--text-color)] tracking-tight text-4xl font-bold leading-tight">250</p>
+    <p class="text-[var(--muted-text-color)] text-sm font-normal leading-normal">Last 30 days average</p>
+    </div>
+    </div>
+    </div>
+    </main>
+    <footer class="text-center p-6 border-t border-[var(--border-color)]">
+    <p class="text-sm text-[var(--muted-text-color)]">© 2024 Acme Co. All rights reserved.</p>
+    </footer>
+    </div>
+    </div>
+    </body></html>

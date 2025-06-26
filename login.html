@@ -1,0 +1,49 @@
+<html><head>
+  <meta charset="utf-8"/>
+  <link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect"/>
+  <link as="style" href="https://fonts.googleapis.com/css2?display=swap&amp;family=Noto+Sans%3Awght%40400%3B500%3B700%3B900&amp;family=Plus+Jakarta+Sans%3Awght%40400%3B500%3B600%3B700%3B800&amp;family=Lexend%3Awght%40400%3B500%3B600%3B700" onload="this.rel='stylesheet'" rel="stylesheet"/>
+  <title>ShaiBha Login</title>
+  <link href="data:image/x-icon;base64," rel="icon" type="image/x-icon"/>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <style type="text/tailwindcss">
+        :root {
+          --primary-color: #ffffff;
+          --secondary-color: #141414;
+          --accent-color: #303030;
+          --text-primary: #ffffff;
+          --text-secondary: #ababab;
+          --card-background: rgba(48, 48, 48, 0.6);}
+        body {
+          font-family: 'Plus Jakarta Sans', 'Noto Sans', sans-serif;
+        }
+        .frosted-glass {
+          background: var(--card-background);
+          backdrop-filter: blur(15px);
+          -webkit-backdrop-filter: blur(15px);border: 1px solid rgba(255, 255, 255, 0.1);}
+      </style>
+  </head>
+  <body class="bg-[var(--secondary-color)] flex items-center justify-center min-h-screen p-4">
+  <div class="relative flex size-full min-h-screen flex-col bg-[var(--secondary-color)] dark group/design-root overflow-x-hidden items-center justify-center">
+  <div class="frosted-glass rounded-3xl p-8 md:p-12 shadow-2xl w-full max-w-md">
+  <div class="text-center mb-8">
+  <h1 class="text-[var(--primary-color)] text-4xl md:text-5xl font-bold" style="font-family: 'Lexend', sans-serif;">ShaiBha</h1>
+  </div>
+  <form class="space-y-6">
+  <div>
+  <label class="sr-only" for="email">Email</label>
+  <input class="form-input w-full rounded-xl border-none bg-[var(--accent-color)] bg-opacity-70 text-[var(--text-primary)] placeholder:text-[var(--text-secondary)] focus:ring-2 focus:ring-[var(--primary-color)] focus:ring-opacity-50 h-14 p-4 text-base transition-all duration-300 ease-in-out" id="email" name="email" placeholder="Email" required="" type="email"/>
+  </div>
+  <div>
+  <label class="sr-only" for="password">Password</label>
+  <input class="form-input w-full rounded-xl border-none bg-[var(--accent-color)] bg-opacity-70 text-[var(--text-primary)] placeholder:text-[var(--text-secondary)] focus:ring-2 focus:ring-[var(--primary-color)] focus:ring-opacity-50 h-14 p-4 text-base transition-all duration-300 ease-in-out" id="password" name="password" placeholder="Password" required="" type="password"/>
+  </div>
+  <div>
+  <button class="w-full rounded-xl bg-[var(--primary-color)] text-[var(--secondary-color)] h-12 md:h-14 px-4 text-base md:text-lg font-semibold tracking-wide hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)] focus:ring-offset-2 focus:ring-offset-[var(--secondary-color)] transition-all duration-300 ease-in-out" type="submit">
+                Login
+              </button>
+  </div>
+  </form>
+  </div>
+  </div>
+  
+  </body></html>

@@ -1,0 +1,36 @@
+<html><head>
+    <link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect"/>
+    <link as="style" href="https://fonts.googleapis.com/css2?display=swap&amp;family=Inter%3Awght%40400%3B500%3B700%3B900&amp;family=Noto+Sans%3Awght%40400%3B500%3B700%3B900" onload="this.rel='stylesheet'" rel="stylesheet"/>
+    <title>Stitch Design</title>
+    <link href="data:image/x-icon;base64," rel="icon" type="image/x-icon"/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <meta charset="utf-8"/>
+    <style type="text/tailwindcss">
+          :root {
+            --background-color: #1a1a1a;
+            --card-background-color: rgba(255, 255, 255, 0.1);
+            --text-color: #ffffff;
+            --button-background-color: #000000;
+            --button-text-color: #ffffff;
+          }
+          .glassmorphism {
+            background: var(--card-background-color);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);border: 1px solid rgba(255, 255, 255, 0.18);
+          }
+        </style>
+    </head>
+    <body class="bg-[var(--background-color)]" style='font-family: Inter, "Noto Sans", sans-serif;'>
+    <div class="relative flex size-full min-h-screen flex-col items-center justify-center p-4 dark group/design-root overflow-x-hidden">
+    <div class="absolute inset-0 bg-cover bg-center" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuByUiU3bZ61oyIr-vAXFDucUkSd5T4FOR-ouJi4tXuNwiRO6ePuRGptO1khTrmHbdOqYbNq_ARr1iuyD-kNjg6WRXc-x3aGhD68xmk8UEHGR1S-QmHdmNS_fLEfIebeZK9UMiY6QFHFPGEdqptVTFnJk39x8VPrD0pHIqdc0MNaFEFHcbVI_RsTV0URhMN1-Xy_1r63putVF03YtErnlVroIjOaEVzH_bzLwxenJ6Wk7Wlbh-MYkRqOh8h122SXrYPqymC_ulZb3Q");'></div>
+    <div class="relative w-full max-w-md rounded-xl glassmorphism p-6 sm:p-8 text-center shadow-2xl">
+    <h1 class="text-2xl sm:text-3xl font-bold text-[var(--text-color)] mb-6">
+              You've been logged out securely
+            </h1>
+    <button class="w-full sm:w-auto min-w-[120px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-12 px-6 bg-[var(--button-background-color)] text-[var(--button-text-color)] text-base font-semibold leading-normal tracking-wide hover:bg-opacity-80 transition-colors duration-200">
+    <span class="truncate">Return to Login</span>
+    </button>
+    </div>
+    </div>
+    
+    </body></html>

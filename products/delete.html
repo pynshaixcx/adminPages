@@ -1,0 +1,34 @@
+<html><head>
+    <meta charset="utf-8"/>
+    <link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect"/>
+    <link as="style" href="https://fonts.googleapis.com/css2?display=swap&amp;family=Noto+Sans%3Awght%40400%3B500%3B700%3B900&amp;family=Plus+Jakarta+Sans%3Awght%40400%3B500%3B700%3B800" onload="this.rel='stylesheet'" rel="stylesheet"/>
+    <title>Confirmation Modal</title>
+    <link href="data:image/x-icon;base64," rel="icon" type="image/x-icon"/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <style type="text/tailwindcss">
+          body {
+            font-family: "Plus Jakarta Sans", "Noto Sans", sans-serif;
+          }
+          .modal-bg {
+            background-color: rgba(255, 255, 255, 0.1);backdrop-filter: blur(12px);-webkit-backdrop-filter: blur(12px);
+          }
+        </style>
+    </head>
+    <body class="bg-[#111827] dark group/design-root">
+    <div class="relative flex size-full min-h-screen flex-col items-center justify-center overflow-x-hidden p-4">
+    <div class="layout-container flex h-full grow flex-col items-center justify-center">
+    <div class="layout-content-container modal-bg flex w-full max-w-md flex-col items-center rounded-xl border border-gray-700 p-8 shadow-2xl">
+    <h3 class="text-center text-xl font-semibold leading-tight tracking-tight text-white sm:text-2xl">Are you sure you want to delete this product?</h3>
+    <div class="mt-8 flex w-full flex-col gap-4 sm:flex-row sm:justify-center">
+    <button class="flex h-11 min-w-[84px] flex-1 cursor-pointer items-center justify-center overflow-hidden rounded-lg border border-gray-500 bg-transparent px-6 text-sm font-medium text-gray-300 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-offset-2 focus:ring-offset-[#111827] sm:flex-initial">
+    <span class="truncate">Cancel</span>
+    </button>
+    <button class="flex h-11 min-w-[84px] flex-1 cursor-pointer items-center justify-center overflow-hidden rounded-lg bg-red-600 px-6 text-sm font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 focus:ring-offset-[#111827] sm:flex-initial">
+    <span class="truncate">Delete</span>
+    </button>
+    </div>
+    </div>
+    </div>
+    </div>
+    
+    </body></html>

@@ -1,0 +1,98 @@
+<html><head>
+    <meta charset="utf-8"/>
+    <link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect"/>
+    <link as="style" href="https://fonts.googleapis.com/css2?display=swap&amp;family=Noto+Sans%3Awght%40400%3B500%3B700%3B900&amp;family=Plus+Jakarta+Sans%3Awght%40400%3B500%3B600%3B700%3B800" onload="this.rel='stylesheet'" rel="stylesheet"/>
+    <title>Stitch Design</title>
+    <link href="data:image/x-icon;base64," rel="icon" type="image/x-icon"/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <style type="text/tailwindcss">
+          :root {
+            --primary-color: #000000;
+            --secondary-color: #1F2937;--accent-color: #4F46E5;--text-primary: #FFFFFF;
+            --text-secondary: #D1D5DB;--border-color: #374151;--input-bg: #374151;--card-bg: rgba(31, 41, 55, 0.8);--card-border: rgba(55, 65, 81, 0.5);
+          }
+          body {
+            font-family: "Plus Jakarta Sans", "Noto Sans", sans-serif;
+            background-color: #111827;}
+          .frosted-card {
+            background-color: var(--card-bg);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--card-border);
+            border-radius: 1rem;box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+          }
+          .form-select-custom {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%239CA3AF' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+            background-position: right 0.5rem center;
+            background-repeat: no-repeat;
+            background-size: 1.5em 1.5em;
+            padding-right: 2.5rem;-webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+          }
+        </style>
+    </head>
+    <body class="text-[var(--text-primary)]">
+    <div class="relative flex size-full min-h-screen flex-col group/design-root overflow-x-hidden">
+    <div class="layout-container flex h-full grow flex-col">
+    <header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[var(--border-color)] px-10 py-4 shadow-sm">
+    <div class="flex items-center gap-4">
+    <div class="size-6 text-[var(--accent-color)]">
+    <svg fill="currentColor" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+    <path clip-rule="evenodd" d="M24 4H42V17.3333V30.6667H24V44H6V30.6667V17.3333H24V4Z" fill-rule="evenodd"></path>
+    </svg>
+    </div>
+    <h2 class="text-xl font-bold tracking-tight">Platform Admin</h2>
+    </div>
+    <nav class="flex flex-1 justify-end gap-6">
+    <div class="flex items-center gap-6">
+    <a class="text-sm font-medium leading-normal text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors" href="#">Dashboard</a>
+    <a class="text-sm font-medium leading-normal text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors" href="#">Products</a>
+    <a class="text-sm font-medium leading-normal text-[var(--text-primary)] border-b-2 border-[var(--accent-color)] pb-1" href="#">Orders</a>
+    <a class="text-sm font-medium leading-normal text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors" href="#">Customers</a>
+    <a class="text-sm font-medium leading-normal text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors" href="#">Discounts</a>
+    </div>
+    <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border-2 border-[var(--accent-color)]" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAjw_r3htFkFSdlUXpedzdYnlJ5vOEJXIeEoz8NaIYKnUZypf5RCex8lMby4Gao4q4quztVKjRhXgRGjkOSBivl7K4_y3rFssfdeV2qzhSyM43zig0HPTv3UCs9Ttbyvyf5tH2LAHIvezSpklsdqzKtKaj4dgQtLimVSXK0gotGZ-9uXtNUqytLjgxXzOqUtpMWwECdVDe8iiakqMWohISNNxIzDVIuGC8LjsPi92KSRZRBElwnyeVVxT51eBkTg_zacgC_WqehqA");'></div>
+    </nav>
+    </header>
+    <main class="flex flex-1 justify-center items-center py-10 px-4 sm:px-6 lg:px-8">
+    <div class="frosted-card w-full max-w-lg p-6 sm:p-8">
+    <div class="mb-8 text-center">
+    <h1 class="text-3xl font-bold tracking-tight text-[var(--text-primary)]">Update Order Status</h1>
+    </div>
+    <div class="mb-6">
+    <div class="flex items-center justify-between gap-4 p-4 bg-[var(--secondary-color)] rounded-lg shadow">
+    <div class="flex flex-col gap-1">
+    <p class="text-xl font-semibold text-[var(--text-primary)]">Order #123456</p>
+    <p class="text-sm text-[var(--text-secondary)]">Placed on July 15, 2024</p>
+    </div>
+    <span class="px-3 py-1 text-xs font-medium text-yellow-800 bg-yellow-200 rounded-full">Pending</span>
+    </div>
+    </div>
+    <form class="space-y-6">
+    <div>
+    <label class="block text-sm font-medium text-[var(--text-secondary)] mb-1.5" for="status">Status</label>
+    <select class="form-select-custom block w-full rounded-lg border-0 bg-[var(--input-bg)] text-[var(--text-primary)] placeholder:text-[var(--text-secondary)] focus:ring-2 focus:ring-[var(--accent-color)] focus:border-[var(--accent-color)] py-3 px-4 text-base transition-shadow" id="status" name="status">
+    <option class="bg-[var(--secondary-color)] text-[var(--text-primary)]" value="pending">Pending</option>
+    <option class="bg-[var(--secondary-color)] text-[var(--text-primary)]" value="processing">Processing</option>
+    <option class="bg-[var(--secondary-color)] text-[var(--text-primary)]" value="shipped">Shipped</option>
+    <option class="bg-[var(--secondary-color)] text-[var(--text-primary)]" value="delivered">Delivered</option>
+    <option class="bg-[var(--secondary-color)] text-[var(--text-primary)]" value="cancelled">Cancelled</option>
+    <option class="bg-[var(--secondary-color)] text-[var(--text-primary)]" value="refunded">Refunded</option>
+    </select>
+    </div>
+    <div>
+    <label class="block text-sm font-medium text-[var(--text-secondary)] mb-1.5" for="admin-notes">Admin Notes</label>
+    <textarea class="block w-full rounded-lg border-0 bg-[var(--input-bg)] text-[var(--text-primary)] placeholder:text-[var(--text-secondary)] focus:ring-2 focus:ring-[var(--accent-color)] focus:border-[var(--accent-color)] py-3 px-4 text-base resize-none transition-shadow" id="admin-notes" name="admin-notes" placeholder="Add internal notes about this order..." rows="4"></textarea>
+    </div>
+    <div class="pt-2">
+    <button class="flex w-full items-center justify-center rounded-lg bg-[var(--accent-color)] h-12 px-6 text-base font-semibold text-white shadow-md hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-[var(--accent-color)] focus:ring-offset-2 focus:ring-offset-[var(--secondary-color)] transition-colors" type="submit">
+                      Update Status
+                    </button>
+    </div>
+    </form>
+    </div>
+    </main>
+    </div>
+    </div>
+    
+    </body></html>

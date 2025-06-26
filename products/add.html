@@ -1,0 +1,137 @@
+<html><head>
+    <link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect"/>
+    <link as="style" href="https://fonts.googleapis.com/css2?display=swap&amp;family=Noto+Sans%3Awght%40400%3B500%3B700%3B900&amp;family=Plus+Jakarta+Sans%3Awght%40400%3B500%3B700%3B800" onload="this.rel='stylesheet'" rel="stylesheet"/>
+    <meta charset="utf-8"/>
+    <title>Admin - Add New Product</title>
+    <link href="data:image/x-icon;base64," rel="icon" type="image/x-icon"/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <style type="text/tailwindcss">
+          :root {
+            --background-primary: #1a1a1a;
+            --background-secondary: #2c2c2c;
+            --background-tertiary: #363636;
+            --border-primary: #363636;
+            --border-secondary: #4d4d4d;
+            --text-primary: #ffffff;
+            --text-secondary: #adadad;
+            --text-accent: #000000; 
+            --accent-primary: #000000;--accent-secondary: #555555;}
+          .glassmorphism-section {
+            background: rgba(44, 44, 44, 0.7);backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(54, 54, 54, 0.3);}
+          .input-field {
+            background-color: var(--background-tertiary);
+            border: 1px solid var(--border-primary);
+          }
+          .input-field:focus {
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.5);}
+          .btn-primary {
+            background-color: var(--accent-primary);
+            color: var(--text-primary);
+          }
+          .btn-primary:hover {
+            background-color: var(--accent-secondary);
+          }
+          .btn-secondary {
+            background-color: var(--background-tertiary);
+            color: var(--text-primary);
+          }
+          .btn-secondary:hover {
+            background-color: var(--border-secondary);
+          }
+        </style>
+    </head>
+    <body class="relative flex size-full min-h-screen flex-col bg-[var(--background-primary)] text-[var(--text-primary)] dark group/design-root overflow-x-hidden" style='font-family: "Plus Jakarta Sans", "Noto Sans", sans-serif;'>
+    <div class="layout-container flex h-full grow flex-col">
+    <header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[var(--border-primary)] px-10 py-4 shadow-md">
+    <div class="flex items-center gap-4">
+    <div class="size-7 text-[var(--accent-primary)]">
+    <svg fill="currentColor" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+    <g clip-path="url(#clip0_6_319)">
+    <path d="M8.57829 8.57829C5.52816 11.6284 3.451 15.5145 2.60947 19.7452C1.76794 23.9758 2.19984 28.361 3.85056 32.3462C5.50128 36.3314 8.29667 39.7376 11.8832 42.134C15.4698 44.5305 19.6865 45.8096 24 45.8096C28.3135 45.8096 32.5302 44.5305 36.1168 42.134C39.7033 39.7375 42.4987 36.3314 44.1494 32.3462C45.8002 28.361 46.2321 23.9758 45.3905 19.7452C44.549 15.5145 42.4718 11.6284 39.4217 8.57829L24 24L8.57829 8.57829Z"></path>
+    </g>
+    <defs>
+    <clipPath id="clip0_6_319"><rect fill="white" height="48" width="48"></rect></clipPath>
+    </defs>
+    </svg>
+    </div>
+    <h1 class="text-[var(--text-primary)] text-xl font-bold tracking-tight">Admin Panel</h1>
+    </div>
+    <nav class="flex flex-1 justify-end gap-6">
+    <div class="flex items-center gap-6">
+    <a class="text-[var(--text-secondary)] hover:text-[var(--text-primary)] text-sm font-medium transition-colors" href="#">Dashboard</a>
+    <a class="text-[var(--text-primary)] text-sm font-semibold leading-normal border-b-2 border-[var(--accent-primary)] pb-1" href="#">Products</a>
+    <a class="text-[var(--text-secondary)] hover:text-[var(--text-primary)] text-sm font-medium transition-colors" href="#">Orders</a>
+    <a class="text-[var(--text-secondary)] hover:text-[var(--text-primary)] text-sm font-medium transition-colors" href="#">Customers</a>
+    </div>
+    <button aria-label="Notifications" class="flex items-center justify-center rounded-full h-10 w-10 bg-[var(--background-tertiary)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors">
+    <svg fill="currentColor" height="20px" viewBox="0 0 256 256" width="20px" xmlns="http://www.w3.org/2000/svg">
+    <path d="M221.8,175.94C216.25,166.38,208,139.33,208,104a80,80,0,1,0-160,0c0,35.34-8.26,62.38-13.81,71.94A16,16,0,0,0,48,200H88.81a40,40,0,0,0,78.38,0H208a16,16,0,0,0,13.8-24.06ZM128,216a24,24,0,0,1-22.62-16h45.24A24,24,0,0,1,128,216ZM48,184c7.7-13.24,16-43.92,16-80a64,64,0,1,1,128,0c0,36.05,8.28,66.73,16,80Z"></path>
+    </svg>
+    </button>
+    <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border-2 border-[var(--accent-primary)]" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCEIOwk3nJ6aeYSVU_28Dqf0kgJpyuXVQR8GO79Rz0-z-iln_t-pSo9FBvL-WmrZKQKiGtr8p9VEfHJ1fIsIgyK2LSikoMI2yR_sYO2jj8MdF-Slf6ayv8kf074kO6-nDca9KnhzEUadJf_aGCePEi_nPaDg2WyksU-RD3B2Ibg6RLZhtnMqWI9mcy0lspayW9D7nCdMEkOUm9G8KynfQOuBtUw0AznzD_gGFxdDr398rrGwwVSKPpE0n1nLoom7myG-YYcaexiIA");'></div>
+    </nav>
+    </header>
+    <main class="px-8 sm:px-16 md:px-24 lg:px-40 flex flex-1 justify-center py-10">
+    <div class="layout-content-container flex flex-col w-full max-w-4xl gap-8">
+    <div class="flex flex-wrap justify-between items-center gap-3">
+    <h2 class="text-[var(--text-primary)] text-3xl font-bold tracking-tight">Add New Product</h2>
+    </div>
+    <section class="glassmorphism-section p-6 rounded-xl shadow-xl">
+    <h3 class="text-[var(--text-primary)] text-xl font-semibold mb-6">Product Information</h3>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <label class="flex flex-col gap-2">
+    <p class="text-[var(--text-primary)] text-sm font-medium">Product Name</p>
+    <input class="form-input input-field w-full rounded-lg text-[var(--text-primary)] focus:outline-none focus:ring-2 focus:ring-[var(--accent-primary)] h-12 placeholder:text-[var(--text-secondary)] p-3 text-sm" placeholder="e.g. Wireless Headphones" value=""/>
+    </label>
+    <label class="flex flex-col gap-2 md:col-span-2">
+    <p class="text-[var(--text-primary)] text-sm font-medium">Description</p>
+    <textarea class="form-textarea input-field w-full rounded-lg text-[var(--text-primary)] focus:outline-none focus:ring-2 focus:ring-[var(--accent-primary)] min-h-32 placeholder:text-[var(--text-secondary)] p-3 text-sm resize-y" placeholder="Provide a detailed description of your product..."></textarea>
+    </label>
+    </div>
+    </section>
+    <section class="glassmorphism-section p-6 rounded-xl shadow-xl">
+    <h3 class="text-[var(--text-primary)] text-xl font-semibold mb-6">Product Images</h3>
+    <div class="flex flex-col items-center justify-center gap-4 rounded-lg border-2 border-dashed border-[var(--border-secondary)] px-6 py-10 hover:border-[var(--accent-primary)] transition-colors">
+    <svg class="text-[var(--text-secondary)]" fill="currentColor" height="48" viewBox="0 0 256 256" width="48" xmlns="http://www.w3.org/2000/svg">
+    <path d="M208,20H72A20,20,0,0,0,52,40V216a20,20,0,0,0,20,20H208a20,20,0,0,0,20-20V40A20,20,0,0,0,208,20ZM84,204a12,12,0,1,1,12-12A12,12,0,0,1,84,204Zm112-30.58L160.7,138.11a12,12,0,0,0-17.4,0l-20,20-20-20a12,12,0,0,0-17.4,0L64,173.42V52H204Z"></path>
+    <path d="M32,48H200a8,8,0,0,0,0-16H48A16,16,0,0,0,32,48V208a8,8,0,0,0,16,0V48Z"></path>
+    </svg>
+    <p class="text-[var(--text-primary)] text-base font-medium">Drag and drop images here, or click to browse</p>
+    <p class="text-[var(--text-secondary)] text-xs">Supports JPG, PNG, GIF up to 5MB</p>
+    <button class="btn-secondary mt-2 flex items-center justify-center rounded-md h-10 px-5 text-sm font-semibold tracking-wide transition-colors">
+    <span class="truncate">Browse Files</span>
+    </button>
+    </div>
+    </section>
+    <section class="glassmorphism-section p-6 rounded-xl shadow-xl">
+    <h3 class="text-[var(--text-primary)] text-xl font-semibold mb-6">Pricing &amp; Inventory</h3>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <label class="flex flex-col gap-2">
+    <p class="text-[var(--text-primary)] text-sm font-medium">Price (INR)</p>
+    <input class="form-input input-field w-full rounded-lg text-[var(--text-primary)] focus:outline-none focus:ring-2 focus:ring-[var(--accent-primary)] h-12 placeholder:text-[var(--text-secondary)] p-3 text-sm" placeholder="e.g. 7499.00" type="number" value=""/>
+    </label>
+    <label class="flex flex-col gap-2">
+    <p class="text-[var(--text-primary)] text-sm font-medium">Stock Keeping Unit (SKU)</p>
+    <input class="form-input input-field w-full rounded-lg text-[var(--text-primary)] focus:outline-none focus:ring-2 focus:ring-[var(--accent-primary)] h-12 placeholder:text-[var(--text-secondary)] p-3 text-sm" placeholder="e.g. WH-001-BLK" value=""/>
+    </label>
+    <label class="flex flex-col gap-2">
+    <p class="text-[var(--text-primary)] text-sm font-medium">Quantity in Stock</p>
+    <input class="form-input input-field w-full rounded-lg text-[var(--text-primary)] focus:outline-none focus:ring-2 focus:ring-[var(--accent-primary)] h-12 placeholder:text-[var(--text-secondary)] p-3 text-sm" placeholder="e.g. 500" type="number" value=""/>
+    </label>
+    </div>
+    </section>
+    <div class="flex justify-end gap-4 mt-4">
+    <button class="btn-secondary flex items-center justify-center rounded-md h-11 px-6 text-sm font-semibold tracking-wide transition-colors">
+    <span class="truncate">Reset Form</span>
+    </button>
+    <button class="btn-primary flex items-center justify-center rounded-md h-11 px-6 text-sm font-semibold tracking-wide transition-colors">
+    <span class="truncate">Add Product</span>
+    </button>
+    </div>
+    </div>
+    </main>
+    </div>
+    </body></html>
